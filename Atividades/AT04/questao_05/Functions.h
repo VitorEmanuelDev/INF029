@@ -1,6 +1,6 @@
 #ifndef FUNCTIONS_H_INCLUDED
 #define FUNCTIONS_H_INCLUDED
 
-int lerArray(int array[]);
+int ler4Numeros(int array[]);
 
 #endif

@@ -8,7 +8,7 @@ int main(void)
 
     printf("Informe três números: ");
 
-    lerArray(array);
+    ler3Numeros(array);
  
     printf("[");
     for(int i = 0; i < 3; i++){

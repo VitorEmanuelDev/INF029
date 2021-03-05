@@ -2,31 +2,25 @@
 
 #include "Functions.h"
 
-struct numeros{
+struct numeros {
 
-    int array[4];
+  int array[4];
 
 };
 
-int main(void){
+int main(void)
+{
+    struct numeros num;
 
-    struct numeros num[4];
+    printf("Informe quatro números: ");
 
-    printf("Informe três números: ");
-
-    for(int i = 0; i < 4; i++){
-
-        scanf("%d", &array[i].num);
-
-   }
-
-    lerArray(num);
-    
+    ler4Numeros(num.array);
+ 
     printf("[");
-    for(int i = 0; i < 3; i++){
+    for(int i = 0; i < 4; i++){
     
-	printf(" %d", array[i].num);    
-    
+        printf(" %d", num.array[i]);
+
     }
     printf(" ]");
 
