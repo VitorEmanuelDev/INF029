@@ -8,19 +8,13 @@ int main(void)
 
     printf("Informe três números: ");
 
-    for(int i = 0; i < 3; i++){
-
-        scanf("%d", &array[i]);
-
-    }
-
     lerArray(array);
-    
+ 
     printf("[");
     for(int i = 0; i < 3; i++){
     
-	printf(" %d", array[i]);    
-    
+        printf(" %d", array[i]);
+
     }
     printf(" ]");
 
