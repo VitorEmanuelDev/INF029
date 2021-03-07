@@ -5,10 +5,10 @@
 
 typedef struct cliente
 {
-    char nome[255];
+    char nome[25];
     char dataNascimento[11];
     char cpf[12];
-    char sexo[30];
+    char sexo[1];
     
 }perfil;
 
@@ -31,10 +31,10 @@ int main(void)
     printf("Informe o nome, a data de nascimento, o cpf e o sexo:\n");
     cadastroCliente(&perfil_teste);
 
-    printf("%s\n", perfil_teste.nome);
-    printf("%s\n", perfil_teste.dataNascimento);
-    printf("%s\n", perfil_teste.cpf);
-    printf("%s\n", perfil_teste.sexo);
+    printf("NOME: %s\n", perfil_teste.nome);
+    printf("NASCIMENTO: %s\n", perfil_teste.dataNascimento);
+    printf("CPF: %s\n", perfil_teste.cpf);
+    printf("SEXO %s\n", perfil_teste.sexo);
  
     return 0;
 
