@@ -3,23 +3,23 @@
 #include <string.h>
 #include <ctype.h>
 
-#define NOME 25
+#define SIZE 25
 
 typedef struct {
 
-    char nome[25];
+    char nome[SIZE];
     int dia, mes, ano;
-    float cpf;
+    long long cpf;
     char sexo;
 
 }cliente;
 
 cliente cadastroCliente();
 
-int validarData(cliente perfis);
-int validarCPF(cliente perfis);
-int validarNome(cliente perfis);
-int validarSexo(cliente perfis);
+int validarData(cliente verifica);
+int validarCPF(cliente verifica);
+int validarNome(cliente verifica);
+int validarSexo(cliente verifica);
 
 int main(void){
 
@@ -32,18 +32,78 @@ int main(void){
     printf("\n\nCadastro cliente.\n");
     printf("Nome: %s", perfil.nome);
     printf("Nascimento: %d/%d/%d\n", perfil.dia, perfil.mes, perfil.ano);
-    printf("CPF: %.0f\n", perfil.cpf);
-    printf("Sexo: %c\n", perfil.sexo);
+    printf("CPF: %lld\n", perfil.cpf);
+    printf("Sexo: %c\n", toupper(perfil.sexo));
     
     return 0;
 
 }
 
-int validarNome(cliente perfis) {
+
+cliente cadastroCliente()
+{
+    int validaNome;
+    int validaData;
+    int validaCPF;
+    int validaSexo;
     
-    int valor = strlen(perfis.nome);
+    cliente verifica;
 
-	if(valor - 1 < 20 && valor -1 > 0) {
+    fgets(verifica.nome, SIZE, stdin);
+    setbuf(stdin, NULL);
+    scanf("%d", &verifica.dia);
+    setbuf(stdin, NULL);
+    scanf("%d", &verifica.mes);
+    setbuf(stdin, NULL);
+    scanf("%d", &verifica.ano);
+    setbuf(stdin, NULL);
+    scanf("%lld", &verifica.cpf);
+    setbuf(stdin, NULL);
+    scanf("%c", &verifica.sexo);
+    setbuf(stdin, NULL);
+
+    validaNome = validarNome(verifica);
+    
+    if(validaNome != 1) {
+    
+	printf("\nNome inválido.");
+    
+    }
+    
+    validaSexo = validarSexo(verifica);
+    
+    if(validaSexo != 1) {
+    
+	printf("\nSexo inválido.");
+	
+    } 
+    
+    validaCPF = validarCPF(verifica);
+    
+    if(validaCPF != 1) {
+    
+	printf("\nCPF inválido.");
+	
+    } 
+    
+    validaData = validarData(verifica);
+    
+    if(validaCPF != 1) {
+    
+	printf("\nData inválida.");
+	
+    } 
+    
+    return verifica;
+
+}
+
+
+int validarNome(cliente verifica) {
+    
+    int valor = strlen(verifica.nome) - 1;
+
+	if(valor < 20 && valor > 0) {
 	
 	    return 1;
 	    
@@ -56,11 +116,11 @@ int validarNome(cliente perfis) {
 }
 
 
-int validarSexo(cliente perfis) {
+int validarSexo(cliente verifica) {
 
-	perfis.sexo = toupper(perfis.sexo);
+	verifica.sexo = toupper(verifica.sexo);
 
-	if(perfis.sexo =='F' || perfis.sexo == 'M' || perfis.sexo == 'O') {
+	if(verifica.sexo =='F' || verifica.sexo == 'M' || verifica.sexo == 'O') {
 	
 	    return 1;
 		
@@ -72,10 +132,10 @@ int validarSexo(cliente perfis) {
 	
 }
 
-int validarCPF(cliente perfis) {
+int validarCPF(cliente verifica) {
 
   
-      if(perfis.cpf > 9999999999 && perfis.cpf <= 99999999999){
+      if(verifica.cpf > 9999999999 && verifica.cpf <= 99999999999){
     
           return 1;
         
@@ -88,25 +148,25 @@ int validarCPF(cliente perfis) {
 }
 
 
-int validarData(cliente perfis) {
+int validarData(cliente verifica) {
     
-    if(perfis.ano >= 1900 && perfis.ano < 2004){
+    if(verifica.ano >= 1900 && verifica.ano < 2004){
     
-          if((perfis.dia >= 1 && perfis.dia <= 31) && 
-             (perfis.mes == 1 || perfis.mes == 3 || perfis.mes == 5 || perfis.mes == 7 || perfis.mes == 8 || perfis.mes == 10 ||perfis.mes == 12)){
+          if((verifica.dia >= 1 && verifica.dia <= 31) && 
+             (verifica.mes == 1 || verifica.mes == 3 || verifica.mes == 5 || verifica.mes == 7 || verifica.mes == 8 || verifica.mes == 10 || verifica.mes == 12)){
         
               return 1; 
         
-          }else if((perfis.dia >= 1 && perfis.dia <= 30) && 
-                 (perfis.mes == 4 || perfis.mes == 6 || perfis.mes == 9 || perfis.mes == 11)){
+          }else if((verifica.dia >= 1 && verifica.dia <= 30) && 
+                 (verifica.mes == 4 || verifica.mes == 6 || verifica.mes == 9 || verifica.mes == 11)){
                  
               return 1;         
                  
-          }else if((perfis.dia >= 1 && perfis.dia <= 28) && (perfis.mes == 2)){
+          }else if((verifica.dia >= 1 && verifica.dia <= 28) && (verifica.mes == 2)){
           
               return 1;
           
-          }else if(perfis.dia == 29 && perfis.mes == 2 && (perfis.ano % 400 == 0 || (perfis.ano % 4 == 0 && perfis.ano % 100 != 0))){
+          }else if(verifica.dia == 29 && verifica.mes == 2 && (verifica.ano % 400 == 0 || (verifica.ano % 4 == 0 && verifica.ano % 100 != 0))){
           
               return 1;
           
@@ -127,64 +187,6 @@ int validarData(cliente perfis) {
 
 }
 
-
-cliente cadastroCliente()
-{
-    int validaNome = 0;
-    int validaData = 0;
-    int validaCPF = 0;
-    int validaSexo = 0;
-    
-    cliente perfis;
-
-    fgets(perfis.nome, NOME, stdin);
-    setbuf(stdin, NULL);
-    scanf("%d", &perfis.dia);
-    setbuf(stdin, NULL);
-    scanf("%d", &perfis.mes);
-    setbuf(stdin, NULL);
-    scanf("%d", &perfis.ano);
-    setbuf(stdin, NULL);
-    scanf("%f", &perfis.cpf);
-    setbuf(stdin, NULL);
-    scanf("%c", &perfis.sexo);
-    setbuf(stdin, NULL);
-
-    validaNome = validarNome(perfis);
-    
-    if(validaNome != 1) {
-    
-	printf("\nNome inválido.");
-    
-    }
-    
-    validaSexo = validarSexo(perfis);
-    
-    if(validaSexo != 1) {
-    
-	printf("\nSexo inválido.");
-	
-    } 
-    
-    validaCPF = validarCPF(perfis);
-    
-    if(validaCPF != 1) {
-    
-	printf("\nCPF inválido.");
-	
-    } 
-    
-    validaData = validarData(perfis);
-    
-    if(validaCPF != 1) {
-    
-	printf("\nData inválida.");
-	
-    } 
-    
-    return perfis;
-
-}
 
 
 
