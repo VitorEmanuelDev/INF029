@@ -60,52 +60,68 @@ cliente cadastroCliente()
     printf("\nInforme o nome do cliente:\n");
     fgets(verifica.nome, SIZE, stdin);
     setbuf(stdin, NULL);
-    printf("\nInforme a data de nascimento do cliente (dd/mm/yyyy):\n");
-    scanf("%d", &verifica.data_nascimento.dia);
-    setbuf(stdin, NULL);
-    scanf("%d", &verifica.data_nascimento.mes);
-    setbuf(stdin, NULL);
-    scanf("%d", &verifica.data_nascimento.ano);
-    setbuf(stdin, NULL);
-    printf("\nInforme o CPF do cliente:\n");
-    scanf(" %s", verifica.cpf);
-    setbuf(stdin, NULL);
-    printf("\nInforme o sexo do cliente.\n");
-    scanf("%c", &verifica.sexo);
-    setbuf(stdin, NULL);
-
+    
     validaNome = validarNome(verifica);
     
     if(validaNome != 1) {
     
 	printf("\nNome inválido.");
+	printf("\nReinicie o cadastro\n");
+	exit(0);
     
     }
     
-    validaSexo = validarSexo(verifica);
+    printf("\nInforme a data de nascimento do cliente (dd/mm/yyyy):\n");
+    printf("dia:\n");
+    scanf("%d", &verifica.data_nascimento.dia);
+    setbuf(stdin, NULL);
+     printf("\nmes:\n");
+    scanf("%d", &verifica.data_nascimento.mes);
+    setbuf(stdin, NULL);
+     printf("\nano:\n");
+    scanf("%d", &verifica.data_nascimento.ano);
     
-    if(validaSexo != 1) {
+    validaData = validarData(verifica);
     
-	printf("\nSexo inválido.");
+    if(validaData != 1) {
+    
+	printf("\nData inválida.");
+	printf("\nReinicie o cadastro\n");
+	exit(0);
 	
     } 
+   
+  
+    setbuf(stdin, NULL);
+    printf("\nInforme o CPF do cliente:\n");
+    scanf(" %s", verifica.cpf);
+    setbuf(stdin, NULL);
     
     validaCPF = validarCPF(verifica);
     
     if(validaCPF != 1) {
     
 	printf("\nCPF inválido.");
+	printf("\nReinicie o cadastro\n");
+	exit(0);
 	
     } 
     
-    validaData = validarData(verifica);
+    printf("\nInforme o sexo do cliente.\n");
+    scanf("%c", &verifica.sexo);
+    setbuf(stdin, NULL);
+
+     validaSexo = validarSexo(verifica);
     
-    if(validaCPF != 1) {
+    if(validaSexo != 1) {
     
-	printf("\nData inválida.");
+	printf("\nSexo inválido.");
+	printf("\nReinicie o cadastro\n");
+	exit(0);
 	
     } 
     
+        
     return verifica;
 
 }
@@ -149,17 +165,18 @@ int validarCPF(cliente verifica) {
     char cpf[12];
     int icpf[12];
     int result1, result2, digito1, digito2, valor;
-      
-    int somador=0;
+          
+    int somador = 0;
     
     strcpy(cpf, verifica.cpf);
-  
+      
     for(int i = 0; i < 11; i++){
   
         icpf[i] = cpf[i] - 48;
   
     }
-    
+        
+   
      //encontrar o primeiro digito verificador
     for(int i = 0; i < 9; i++)  {
   
@@ -204,55 +221,66 @@ int validarCPF(cliente verifica) {
     }  
   
  
-  
-    if(digito1 == icpf[9] && digito2 == icpf[10]){  
+     if(strlen(cpf) != 11){
+     
+          return -1;
+     
+     } 
+     
+     if((strcmp(cpf,"00000000000") == 0) || (strcmp(cpf,"11111111111") == 0) || (strcmp(cpf,"22222222222") == 0) ||
+            (strcmp(cpf,"33333333333") == 0) || (strcmp(cpf,"44444444444") == 0) || (strcmp(cpf,"55555555555") == 0) ||
+            (strcmp(cpf,"66666666666") == 0) || (strcmp(cpf,"77777777777") == 0) || (strcmp(cpf,"88888888888") == 0) ||(strcmp(cpf,"99999999999") == 0)){  
 
+         return -1;
+    
+    }
+    
+    if(digito1==icpf[9] && digito2==icpf[10]){
+    
         return 1;
     
-    }else{
-      
-        return -1;
-        
     }
     
 }
-
+ 
 
 int validarData(cliente verifica) {
     
-    if(verifica.data_nascimento.ano >= 1900 && verifica.data_nascimento.ano < 2004){
+    if ((verifica.data_nascimento.dia >= 1 && verifica.data_nascimento.dia <= 31) && (verifica.data_nascimento.mes >= 1 && verifica.data_nascimento.mes <= 12) && (verifica.data_nascimento.ano >= 1900 && verifica.data_nascimento.ano <= 2100)){
     
-          if((verifica.data_nascimento.dia >= 1 && verifica.data_nascimento.dia <= 31) && 
-             (verifica.data_nascimento.mes == 1 || verifica.data_nascimento.mes == 3 || verifica.data_nascimento.mes == 5 || verifica.data_nascimento.mes == 7 || verifica.data_nascimento.mes == 8 || verifica.data_nascimento.mes == 10 || verifica.data_nascimento.mes == 12)){
-        
-              return 1; 
-        
-          }else if((verifica.data_nascimento.dia >= 1 && verifica.data_nascimento.dia <= 30) && 
-                 (verifica.data_nascimento.mes == 4 || verifica.data_nascimento.mes == 6 || verifica.data_nascimento.mes == 9 || verifica.data_nascimento.mes == 11)){
-                 
-              return 1;         
-                 
-          }else if((verifica.data_nascimento.dia >= 1 && verifica.data_nascimento.dia <= 28) && (verifica.data_nascimento.mes == 2)){
-          
-              return 1;
-          
-          }else if(verifica.data_nascimento.dia == 29 && verifica.data_nascimento.mes == 2 && (verifica.data_nascimento.ano % 400 == 0 || (verifica.data_nascimento.ano % 4 == 0 && verifica.data_nascimento.ano % 100 != 0))){
-          
-              return 1;
-          
-          }else{
-          
-              return -1;
-          
-          }
-    
-    
-    }else{
-   
-       return -1;
-   
-    }
-
+            if ((verifica.data_nascimento.dia == 29 && verifica.data_nascimento.mes == 2) && ((verifica.data_nascimento.ano % 4) == 0)){
+            
+                return 1;
+                
+            }
+            
+            if (verifica.data_nascimento.dia <= 28 && verifica.data_nascimento.mes == 2){
+            
+                return 1;
+                
+            }
+            
+            if ((verifica.data_nascimento.dia <= 30) && (verifica.data_nascimento.mes == 4 || verifica.data_nascimento.mes == 6 || verifica.data_nascimento.mes == 9 || verifica.data_nascimento.mes == 11)){
+            
+                return 1;
+                
+            }
+            
+            if ((verifica.data_nascimento.dia <=31) && (verifica.data_nascimento.mes == 1 || verifica.data_nascimento.mes == 3 || verifica.data_nascimento.mes == 5 || verifica.data_nascimento.mes == 7 || verifica.data_nascimento.mes ==8 || verifica.data_nascimento.mes == 10 || verifica.data_nascimento.mes == 12)){
+            
+                return 1;
+                
+            }else{
+            
+                return -1;
+                
+            }
+            
+      }else{
+      
+           return -1;
+                
+           }
 
 
 }
