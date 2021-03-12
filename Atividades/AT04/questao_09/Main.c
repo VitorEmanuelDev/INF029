@@ -71,25 +71,26 @@ cliente cadastroCliente()
     
     }
     
-    printf("\nInforme a data de nascimento do cliente (dd/mm/yyyy):\n");
-    printf("dia:\n");
-    scanf("%d", &verifica.data_nascimento.dia);
-    setbuf(stdin, NULL);
-     printf("\nmes:\n");
-    scanf("%d", &verifica.data_nascimento.mes);
-    setbuf(stdin, NULL);
-     printf("\nano:\n");
-    scanf("%d", &verifica.data_nascimento.ano);
+	printf("\nInforme a data de nascimento do cliente (dd/mm/yyyy):\n");
+	printf("dia:\n");
+	scanf("%d", &verifica.data_nascimento.dia);
+	setbuf(stdin, NULL);
+	printf("\nmes:\n");
+	scanf("%d", &verifica.data_nascimento.mes);
+	setbuf(stdin, NULL);
+	printf("\nano:\n");
+	scanf("%d", &verifica.data_nascimento.ano);
+	setbuf(stdin, NULL);
     
-    validaData = validarData(verifica);
-    
-    if(validaData != 1) {
-    
-	printf("\nData inválida.");
-	printf("\nReinicie o cadastro\n");
-	exit(0);
-	
-    } 
+	validaData = validarData(verifica);
+
+	if(validaData != 1) {
+
+		printf("\nData inválida.");
+		printf("\nReinicie o cadastro\n");
+		exit(0);
+
+	} 
    
   
     setbuf(stdin, NULL);
@@ -284,8 +285,6 @@ int validarData(cliente verifica) {
 
 
 }
-
-
 
 
 
