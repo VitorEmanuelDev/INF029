@@ -4,9 +4,7 @@
 #include <string.h>
 #include <ctype.h>
 
-#define TURMA 5
 #define TAM 30
-
 
 typedef struct dados{
 
@@ -31,7 +29,7 @@ int validarSexo(char sexo);
 
 int main(){
 
-	Aluno cadastro_aluno[TURMA];
+	Aluno cadastro_aluno[TAM];
 	int quantidade_alunos = 0;
 	int escolha = 0;
 	int flag = 1;
@@ -45,7 +43,7 @@ int main(){
 
 			case 1:{
 
-				if(quantidade_alunos < TURMA){
+				if(quantidade_alunos < TAM){
 
 					cadastrarAlunos(quantidade_alunos, cadastro_aluno);
 					printf("Cadastro realizado\n");
