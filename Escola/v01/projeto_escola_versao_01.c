@@ -29,8 +29,6 @@ int validarData(char data_nascimento[]);
 int validarSexo(char sexo);
 
 
-
-
 int main(){
 
 	Aluno cadastro_aluno[TURMA];
@@ -50,7 +48,7 @@ int main(){
 				if(quantidade_alunos < TURMA){
 
 					cadastrarAlunos(quantidade_alunos, cadastro_aluno);
-					printf("Cadastro Realizado\n");
+					printf("Cadastro realizado\n");
 					quantidade_alunos++;
 					break;
 
@@ -103,7 +101,7 @@ int paginaPrincipcal(int opcao){
 
 void cadastrarAlunos(int quantidade, Aluno cadastro[]){
 
-	int true = 1;
+	int errado = 1;
 
 	int validaNome;
 	int validaData;
@@ -115,7 +113,7 @@ void cadastrarAlunos(int quantidade, Aluno cadastro[]){
 	fgets(cadastro[quantidade].matricula, TAM, stdin);
 	setbuf(stdin, NULL);
 
-	while(true) {
+	while(errado) {
 
 		validaMatricula = validarMatricula(cadastro[quantidade].matricula);
 
@@ -136,7 +134,7 @@ void cadastrarAlunos(int quantidade, Aluno cadastro[]){
 	fgets(cadastro[quantidade].nome, TAM, stdin);
 	setbuf(stdin, NULL);
 
-	while(true) {
+	while(errado) {
 
 		validaNome = validarNome(cadastro[quantidade].nome);
 
@@ -157,7 +155,7 @@ void cadastrarAlunos(int quantidade, Aluno cadastro[]){
 	scanf("%c",&cadastro[quantidade].sexo);
 	getchar();
 
-	while(true) {
+	while(errado) {
 
 		validaSexo = validarSexo(cadastro[quantidade].sexo);
 
@@ -177,9 +175,9 @@ void cadastrarAlunos(int quantidade, Aluno cadastro[]){
 	printf("Informe a data de nascimento, formato: dd/mm/aaaa.\n");
 	fgets(cadastro[quantidade].data_nascimento, TAM, stdin);
 	setbuf(stdin, NULL);
-	getchar();
+	//getchar();
 
-	while(true) {
+	while(errado) {
 
 		validaData = validarData(cadastro[quantidade].data_nascimento);
 
@@ -200,7 +198,7 @@ void cadastrarAlunos(int quantidade, Aluno cadastro[]){
 	fgets(cadastro[quantidade].cpf, TAM, stdin);
     setbuf(stdin, NULL);
 
-    while(true) {
+    while(errado) {
 
     	validaCPF = validarCPF(cadastro[quantidade].cpf);
 
@@ -266,9 +264,9 @@ int validarCPF(char cpf[]) {
 
     int icpf[TAM];
 
-    int result1, result2, digito1, digito2, valor;
+    int resultado_01, resultado_02, digito_01, digito_02, valor;
 
-    int somador = 0;
+    int soma = 0;
 
     for(int i = 0; i < 11; i++)
     	icpf[i] = cpf[i] - 48;
@@ -279,52 +277,52 @@ int validarCPF(char cpf[]) {
 
      //encontrar o primeiro digito verificador
     for(int i = 0; i < 9; i++)
-        somador += icpf[i] * (10 - i);
+        soma += icpf[i] * (10 - i);
 
-    result1 = somador % 11;
+    resultado_01 = soma % 11;
 
-    if( result1 == 0 || result1 == 1 ){
+    if(resultado_01 == 0 || resultado_01 == 1 ){
 
-        digito1 = 0;
+        digito_01 = 0;
 
     }else{
 
-        digito1 = 11 - result1;
+        digito_01 = 11 - resultado_01;
 
     }
 
     //encontrar o segundo digito verificador
 
-    somador = 0;
+    soma = 0;
 
     for(int i = 0; i < 10; i++)  {
 
-        somador += icpf[i] * (11 - i);
+        soma += icpf[i] * (11 - i);
 
     }
 
-    valor = (somador / 11) * 11;
+    valor = (soma / 11) * 11;
 
-    result2 = somador - valor;
+    resultado_02 = soma - valor;
 
-    if(result2 == 0 || result2 == 1){
+    if(resultado_02 == 0 || resultado_02 == 1){
 
-        digito2 = 0;
+        digito_02 = 0;
 
     }else{
 
-        digito2 = 11 - result2;
+        digito_02 = 11 - resultado_02;
 
     }
 
 
-    if(strlen(cpf) != 11 && ((strcmp(cpf,"00000000000") == 0) || (strcmp(cpf,"11111111111") == 0) || (strcmp(cpf,"22222222222") == 0) ||
+    if(strlen(cpf) - 1 != 11 && ((strcmp(cpf,"00000000000") == 0) || (strcmp(cpf,"11111111111") == 0) || (strcmp(cpf,"22222222222") == 0) ||
       (strcmp(cpf,"33333333333") == 0) || (strcmp(cpf,"44444444444") == 0) || (strcmp(cpf,"55555555555") == 0) ||
       (strcmp(cpf,"66666666666") == 0) || (strcmp(cpf,"77777777777") == 0) || (strcmp(cpf,"88888888888") == 0) ||(strcmp(cpf,"99999999999") == 0))){
 
     	return -1;
 
-    }else if(digito1 == icpf[9] && digito2 == icpf[10]){
+    }else if(digito_01 == icpf[9] && digito_02 == icpf[10]){
 
         return 1;
 
@@ -386,7 +384,7 @@ int validarData(char data_nascimento[]) {
 	int len = strlen(data_nascimento);
 	char digitos[TAM];
 	char caracteres[TAM];
-	int j = 0;
+	int len_digitos = 0;
 
 	strcpy(caracteres, data_nascimento);
 
@@ -394,13 +392,13 @@ int validarData(char data_nascimento[]) {
 
 		if(caracteres[i] >= 49 && caracteres[i] <= 57){
 		//if(isdigit(caracteres[i])){
-			digitos[j] = caracteres[i];
-			j++;
+			digitos[len_digitos] = caracteres[i];
+			len_digitos++;
 
 		}
 
 	}
-	digitos[j] = '\0';
+	digitos[len_digitos] = '\0';
 
 	int data = atoi(digitos);
 
@@ -447,7 +445,7 @@ int validarNome(char nome[]){
 
 	strcpy(caracteres, nome);
 
-	if(len - 1 <= 30 && len - 1 > 3) {
+	if(len - 1 <= 30 && len - 1 > 5) {
 
 		for(int i = 0; i < len; i++){
 
