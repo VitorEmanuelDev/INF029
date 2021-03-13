@@ -5,21 +5,21 @@
 #include <ctype.h>
 
 #define TURMA 5
-#define TAM 15
-#define NOME 30
+#define TAM 30
+
 
 typedef struct dados{
 
 	char data_nascimento[TAM];
 	char matricula[TAM];
-	char nome[NOME];
+	char nome[TAM];
 	char cpf[TAM];
 	char sexo;
 
 }Aluno;
 
 
-int paginaPrincipcal(int opcao_aluno);
+int paginaPrincipcal(int escolha);
 void cadastrarAlunos(int quantidade, Aluno cadastro[]);
 void listarAlunos(int quantidade, Aluno cadastro[]);
 int validarMatricula(char matricula[]);
@@ -35,15 +35,15 @@ int main(){
 
 	Aluno cadastro_aluno[TURMA];
 	int quantidade_alunos = 0;
-	int opcao_aluno = 0;
+	int escolha = 0;
 	int flag = 1;
 
 
 	while(flag == 1){
 
-		opcao_aluno = paginaPrincipcal(opcao_aluno);
+		escolha = paginaPrincipcal(escolha);
 
-		switch(opcao_aluno){
+		switch(escolha){
 
 			case 1:{
 
@@ -103,7 +103,7 @@ int paginaPrincipcal(int opcao){
 
 void cadastrarAlunos(int quantidade, Aluno cadastro[]){
 
-	//int true = 1;
+	int true = 1;
 
 	int validaNome;
 	int validaData;
@@ -115,7 +115,7 @@ void cadastrarAlunos(int quantidade, Aluno cadastro[]){
 	fgets(cadastro[quantidade].matricula, TAM, stdin);
 	setbuf(stdin, NULL);
 
-	//while(true) {
+	while(true) {
 
 		validaMatricula = validarMatricula(cadastro[quantidade].matricula);
 
@@ -125,39 +125,39 @@ void cadastrarAlunos(int quantidade, Aluno cadastro[]){
 			fgets(cadastro[quantidade].matricula, TAM, stdin);
 			setbuf(stdin, NULL);
 
-		}/* else {
+		}else {
 
 			break;
 
 		}
-	}*/
+	}
 
 	printf("Informe o nome:\n");
-	fgets(cadastro[quantidade].nome, NOME, stdin);
+	fgets(cadastro[quantidade].nome, TAM, stdin);
 	setbuf(stdin, NULL);
 
-	//while(true) {
+	while(true) {
 
 		validaNome = validarNome(cadastro[quantidade].nome);
 
 		if(validaNome != 1) {
 
 			printf("\nNome inválido. Informe novamente:\n");
-			fgets(cadastro[quantidade].nome, NOME, stdin);
+			fgets(cadastro[quantidade].nome, TAM, stdin);
 			setbuf(stdin, NULL);
 
-		} /* else {
+		}else {
 
 			break;
 
 		}
-	}*/
+	}
 
 	printf("Informe o Sexo:\n");
 	scanf("%c",&cadastro[quantidade].sexo);
 	getchar();
 
-	//while(true) {
+	while(true) {
 
 		validaSexo = validarSexo(cadastro[quantidade].sexo);
 
@@ -166,12 +166,12 @@ void cadastrarAlunos(int quantidade, Aluno cadastro[]){
 			printf("\nSexo inválido. Informe novamente:\n");
 			scanf("%c",&cadastro[quantidade].sexo);
 			getchar();
-		}/* else {
+		} else {
 
 			break;
 
 		}
-	}*/
+	}
 
 
 	printf("Informe a data de nascimento, formato: dd/mm/aaaa.\n");
@@ -179,7 +179,7 @@ void cadastrarAlunos(int quantidade, Aluno cadastro[]){
 	setbuf(stdin, NULL);
 	getchar();
 
-	//while(true) {
+	while(true) {
 
 		validaData = validarData(cadastro[quantidade].data_nascimento);
 
@@ -189,18 +189,18 @@ void cadastrarAlunos(int quantidade, Aluno cadastro[]){
 			fgets(cadastro[quantidade].data_nascimento, TAM, stdin);
 			setbuf(stdin, NULL);
 
-		}/* else {
+		} else {
 
 			break;
 
 		}
-	}*/
+	}
 
 	printf("Informe o CPF\n");
 	fgets(cadastro[quantidade].cpf, TAM, stdin);
     setbuf(stdin, NULL);
 
-    //while(true) {
+    while(true) {
 
     	validaCPF = validarCPF(cadastro[quantidade].cpf);
 
@@ -210,12 +210,12 @@ void cadastrarAlunos(int quantidade, Aluno cadastro[]){
 			fgets(cadastro[quantidade].cpf, TAM, stdin);
 			setbuf(stdin, NULL);
 
-		}/* else {
+		} else {
 
 			break;
 
 		}
-	}*/
+	}
 
     printf("\n\n");
 
@@ -235,7 +235,7 @@ void listarAlunos(int quantidade, Aluno cadastro[]){
 			printf("Matricula: %s\n",cadastro[i].matricula);
 			printf("Nome: %s\n",cadastro[i].nome);
 			printf("Sexo: %c\n",cadastro[i].sexo);
-			printf("Data de nascimento %s\n",cadastro[quantidade].data_nascimento);
+			printf("Data de nascimento %s\n",cadastro[i].data_nascimento);
 			printf("CPF: %s\n",cadastro[i].cpf);
 
 		}
@@ -271,7 +271,8 @@ int validarCPF(char cpf[]) {
     int somador = 0;
 
     for(int i = 0; i < 11; i++)
-        icpf[i] = cpf[i] - 48;
+    	icpf[i] = cpf[i] - 48;
+        //icpf[i] = atoi(cpf[i]);
 
 
 
@@ -323,7 +324,7 @@ int validarCPF(char cpf[]) {
 
     	return -1;
 
-    }else if(digito1==icpf[9] && digito2==icpf[10]){
+    }else if(digito1 == icpf[9] && digito2 == icpf[10]){
 
         return 1;
 
@@ -341,19 +342,42 @@ int validarCPF(char cpf[]) {
 
 int validarMatricula(char matricula[]) {
 
+	char caracteres[TAM];
+	int len = strlen(matricula);
+	int flag = 1;
 
-	if(strlen(matricula) != 11 && ((strcmp(matricula,"00000000000") == 0) || (strcmp(matricula,"11111111111") == 0) || (strcmp(matricula,"22222222222") == 0) ||
-	(strcmp(matricula,"33333333333") == 0) || (strcmp(matricula,"44444444444") == 0) || (strcmp(matricula,"55555555555") == 0) ||
-	(strcmp(matricula,"66666666666") == 0) || (strcmp(matricula,"77777777777") == 0) || (strcmp(matricula,"88888888888") == 0) ||(strcmp(matricula,"99999999999") == 0))){
+	strcpy(caracteres, matricula);
 
-		return -1;
+	if(len - 1 == 11){
+
+		for(int i = 0; i < len; i++){
+
+			if(caracteres[i] < 49 && caracteres[i] > 57){
+			//if(isdigit(caracteres[i])){
+				flag = 0;
+				break;
+
+			}
+
+		}
+
+		if((flag == 0) || ((strcmp(matricula,"00000000000") == 0) || (strcmp(matricula,"11111111111") == 0) || (strcmp(matricula,"22222222222") == 0) ||
+		(strcmp(matricula,"33333333333") == 0) || (strcmp(matricula,"44444444444") == 0) || (strcmp(matricula,"55555555555") == 0) ||
+		(strcmp(matricula,"66666666666") == 0) || (strcmp(matricula,"77777777777") == 0) || (strcmp(matricula,"88888888888") == 0) ||(strcmp(matricula,"99999999999") == 0))){
+
+			return -1;
+
+		}else {
+
+			return 1;
+
+		}
 
 	}else{
 
-		return 1;
+		return -1;
 
 	}
-
 
 }
 
@@ -417,18 +441,41 @@ int validarData(char data_nascimento[]) {
 
 int validarNome(char nome[]){
 
-	int tamanho = strlen(nome);
+	char caracteres[TAM];
+	int len = strlen(nome);
+	int flag = 1;
 
-	if(tamanho - 1 < 30 && tamanho -1 > 0) {
+	strcpy(caracteres, nome);
 
-			return 1;
+	if(len - 1 <= 30 && len - 1 > 3) {
 
-		} else {
+		for(int i = 0; i < len; i++){
 
-			return -1;
+			//if(isalpha(caracteres[i])){
+			if((caracteres[i] < 65 && caracteres[i] > 90) && (caracteres[i] < 97 && caracteres[i] > 122)){
+
+				flag = 0;
+				break;
+
+			}
 
 		}
 
+		if (flag == 0){
+
+			return -1;
+
+		}else{
+
+			return 1;
+
+		}
+
+	}else{
+
+		return -1;
+
+    }
 
 }
 
