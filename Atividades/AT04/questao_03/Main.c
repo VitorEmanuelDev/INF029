@@ -12,11 +12,13 @@ int main(){
         printf("Não é possível calcular o fatorial de um número negativon\n");
         return 0;    
 
+    }else{
+
+        fator = factorial(num);
+        printf("O fatorial do valor informado é %d.", fator);
+    
     }
-
-    fator = factorial(num);
-    printf("O fatorial do valor informado é %d.", fator);
-
+    
     return 0;
 
 }
