@@ -9,15 +9,13 @@ int main(){
 
     if(num < 0){
        
-        printf("Não é possível calcular o fatorial de um número negativon\n");
+        printf("Não é possível calcular o fatorial de um número negativo\n");
         return 0;    
 
-    }else{
+    }
 
         fator = factorial(num);
-        printf("O fatorial do valor informado é %d.", fator);
-    
-    }
+        printf("O fatorial do valor informado é %d.", fator);   
     
     return 0;
 
