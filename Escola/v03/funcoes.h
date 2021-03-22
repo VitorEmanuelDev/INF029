@@ -1,4 +1,4 @@
-#define TAM 30
+#define TAM 40
 
 typedef struct dados_01{
 
@@ -20,20 +20,20 @@ typedef struct dados_02{
 }Disciplina;
 
 //menu
-int paginaPrincipcal(int escolha);
+int menuPrincipal(int escolha);
+int menuRelatorios(int escolha);
 
 //métodos para indivíduos
 void cadastrarIndividuo(int quantidade, Individuo cadastro[]);
 void listarIndividuo(int quantidade, Individuo cadastro[]);
 void alterarIndividuo(int quantidade, Individuo cadastro[]);
-int removerIndividuo(int quantidade, Individuo cadastro[]);
+void removerIndividuo(int quantidade, Individuo cadastro[]);
 
 //métodos para disciplinas
 void cadastrarDisciplinas(int quantidade_professores, int quantidade_disciplinas, Disciplina cadastro_disciplinas[], Individuo cadastro_individuos[]);
 void listarDisciplinas(int quantidade, Disciplina cadastro[]);
 void alterarDisciplinas(int quantidade, Disciplina cadastro[]);
 void removerDisciplinas(int quantidade, Disciplina cadastro[]);
-
 
 //validacoes
 int validarMatricula(char matricula[]);
@@ -44,4 +44,3 @@ int validarSexo(char sexo);
 int validarCodigo(char codigo[]);
 int validarProfessor(int quantidade_professores, int quantidade_disciplinas, Disciplina cadastro_disciplinas[], Individuo cadastro_professores[]);
 int validarSemestre(char semestre);
-

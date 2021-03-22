@@ -5,6 +5,34 @@
 
 #include "funcoes.h"
 
+int menuPrincipal(int opcao){
+
+	printf("________________________________________________________________\n");
+	printf("|**************************************************************|\n");
+	printf("|*********************** PROJETO ESCOLA ***********************|\n");
+	printf("|**************************************************************|\n");
+	printf("|_______________________________________ ______________________|\n");
+	printf("|                 |                     |                      |\n");
+	printf("|    * ALUNOS *   |    * PROFESSORES *  |    * DISCIPLINAS *   |\n");
+	printf("|_________________|_____________________|______________________|\n");
+	printf("|                 |                     |                      |\n");
+	printf("|   1.Cadastrar   |    4.Cadastrar      |     7.Cadastrar      |\n");
+	printf("|   2.Remover     |    5.Remover        |     8.Remover        |\n");
+	printf("|   3.Atualizar   |    6.Atualizar      |     9.Atualizar      |\n");
+	printf("|_________________|_____________________|______________________|\n");
+	printf("|                                                              |\n");
+	printf("|                     10.Relatórios                            |\n");
+	printf("|______________________________________________________________|\n");
+	printf("|                 |                                            |\n");
+	printf("|   11.SAIR       |************ Digite a sua opcao ************|\n");
+	printf("|_________________|____________________________________________|\n");
+
+	scanf("%d",&opcao);
+	setbuf(stdin, NULL);
+
+	return opcao;
+
+}
 
 int main(){
 
@@ -21,7 +49,7 @@ int main(){
 
 	while(true){
 
-		escolha = paginaPrincipcal(escolha);
+		escolha = menuPrincipal(escolha);
 
 		switch(escolha){
 
@@ -45,13 +73,6 @@ int main(){
 			}
 			case 2:{
 
-				printf("\n*** Alunos(as) cadastrados(as) ***\n\n");
-				listarIndividuo(quantidade_alunos, cadastro_alunos);
-				break;
-
-			}
-			case 3:{
-
 				if(quantidade_alunos > 0){
 
 					printf("\n*** Remova um perfil ***\n");
@@ -67,7 +88,7 @@ int main(){
 				}
 
 			}
-			case 4:{
+			case 3:{
 
 				if(quantidade_alunos > 0){
 
@@ -84,7 +105,7 @@ int main(){
 				}
 
 			}
-			case 5:{
+			case 4:{
 
 				if(quantidade_professores < TAM){
 
@@ -101,14 +122,7 @@ int main(){
 				}
 
 			}
-			case 6:{
-
-			printf("\n*** Professores(as) cadastrados(as) ***\n\n");
-			listarIndividuo(quantidade_professores, cadastro_professores);
-			break;
-
-			}
-			case 7:{
+			case 5:{
 
 				if(quantidade_professores > 0){
 
@@ -125,12 +139,12 @@ int main(){
 				}
 
 			}
-			case 8:{
+			case 6:{
 
 				if(quantidade_professores > 0){
 
 					printf("\n*** Atualize um perfil ***\n");
-					removerIndividuo(quantidade_professores, cadastro_professores);
+					alterarIndividuo(quantidade_professores, cadastro_professores);
 					printf("Atualização realizada\n");
 					break;
 
@@ -142,7 +156,7 @@ int main(){
 				}
 
 			}
-			case 9:{
+			case 7:{
 
 				if(quantidade_disciplinas < TAM){
 
@@ -158,19 +172,12 @@ int main(){
 				}
 
 			}
-			case 10:{
-
-				printf("\n*** Disciplinas cadastradas ***\n\n");
-				listarDisciplinas(quantidade_disciplinas, cadastro_disciplinas);
-				break;
-
-			}
-			case 11:{
+			case 8:{
 
 				if(quantidade_disciplinas > 0){
 
 					printf("\n*** Remova uma disciplina ***\n");
-					removerIndividuo(quantidade_disciplinas, cadastro_disciplinas);
+					removerDisciplinas(quantidade_disciplinas, cadastro_disciplinas);
 					printf("Remoção realizada\n");
 					break;
 
@@ -182,12 +189,12 @@ int main(){
 				}
 
 			}
-			case 12:{
+			case 9:{
 
 				if(quantidade_disciplinas > 0){
 
 					printf("\n*** Atualize uma disciplina ***\n");
-					removerIndividuo(quantidade_disciplinas, cadastro_disciplinas);
+					alterarDisciplinas(quantidade_disciplinas, cadastro_disciplinas);
 					printf("Atualização realizada\n");
 					break;
 
@@ -199,7 +206,13 @@ int main(){
 				}
 
 			}
-			case 13:{
+			case 10:{
+
+				menuRelatorios(escolha);
+				break;
+
+			}
+			case 11:{
 
 				printf("Saindo...");
 				true = 0;
@@ -215,5 +228,4 @@ int main(){
 
 	return 0;
 }
-
 

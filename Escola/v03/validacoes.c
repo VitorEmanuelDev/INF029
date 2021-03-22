@@ -95,10 +95,6 @@ int validarCPF(char cpf[]) {
 }
 
 
-
-
-
-
 int validarMatricula(char matricula[]) {
 
 	char caracteres[TAM];
@@ -126,7 +122,7 @@ int validarMatricula(char matricula[]) {
 
 			return -1;
 
-		}else {
+		}else{
 
 			return 1;
 
@@ -296,37 +292,33 @@ int validarProfessor(int quantidade_professores, int quantidade_disciplinas, Dis
 	size_t tam_individuo = sizeof(cadastro_professores) / sizeof(cadastro_professores[0]);
 
 	int flag = 0;
+	int result = -1;
 
 	if(quantidade_professores > 0 && quantidade_disciplinas > 0){
 
 			for(int i = 0; i < tam_disciplina; i++){
 
-				if(flag == 0){
+				if(result != 1){
 
 					for(int j = 0; j < tam_individuo; j++){
 
 						if(strcmp(cadastro_disciplinas[i].professor, cadastro_professores[j].nome) == 0){
 
-							flag = 1;
+							result = 1;
 							break;
 
 						}
 					}
 				}
 
-				if(flag == 1){
-
-					return 1;
-					break;
-
-				}
 			}
 
-	}else
-		return -1;
+	}
 
+    return result;
 
 }
+
 
 int validarSemestre(char semestre){
 
@@ -341,4 +333,3 @@ int validarSemestre(char semestre){
 	}
 
 }
-

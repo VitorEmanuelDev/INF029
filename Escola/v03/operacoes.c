@@ -6,34 +6,6 @@
 
 #include "funcoes.h"
 
-int paginaPrincipcal(int opcao){
-
-	printf("______________________________________________________________\n");
-	printf("|************************************************************|\n");
-	printf("|********************* PROJETO ESCOLA ***********************|\n");
-	printf("|************************************************************|\n");
-	printf("|____________________________________________________________|\n");
-	printf("|                |                     |                     |\n");
-	printf("|    * ALUNOS *  |    * PROFESSORES *  |    * DISCIPLINAS *  |\n");
-	printf("|________________|_____________________|_____________________|\n");
-	printf("|                |                     |                     |\n");
-	printf("|   1.Cadastrar  |    5.Cadastrar      |     9.Cadastrar     |\n");
-	printf("|   2.Listar     |    6.Listar         |     10.Listar       |\n");
-	printf("|   3.Remover    |    7.Remover        |     11.Remover      |\n");
-	printf("|   4.Atualizar  |    8.Atualizar      |     12.Atualizar    |\n");
-	printf("|________________|_____________________|_____________________|\n");
-	printf("|                |                                           |\n");
-	printf("|   13.SAIR      |*******************************************|\n");
-	printf("|________________|___________________________________________|\n");
-
-
-	printf("Digite a sua opcao:\n");
-	scanf("%d",&opcao);
-	setbuf(stdin, NULL);
-
-	return opcao;
-}
-
 void cadastrarIndividuo(int quantidade, Individuo cadastro[]){
 
 	int errado = 1;
@@ -109,7 +81,7 @@ void cadastrarIndividuo(int quantidade, Individuo cadastro[]){
 	printf("Informe a data de nascimento, formato: dd/mm/aaaa.\n");
 	fgets(cadastro[quantidade].data_nascimento, TAM, stdin);
 	setbuf(stdin, NULL);
-	//getchar();
+
 
 	while(errado) {
 
@@ -154,30 +126,6 @@ void cadastrarIndividuo(int quantidade, Individuo cadastro[]){
 }
 
 
-void listarIndividuo(int quantidade, Individuo cadastro[]){
-
-	if(quantidade <= 0){
-
-		printf("Cadastro vazio.\n");
-
-	}else{
-
-		for(int i = 0; i < quantidade; i++){
-
-			printf("Numero: %d\n", i+1);
-			printf("Matricula: %s\n",cadastro[i].matricula);
-			printf("Nome: %s\n",cadastro[i].nome);
-			printf("Sexo: %c\n",cadastro[i].sexo);
-			printf("Data de nascimento %s\n",cadastro[i].data_nascimento);
-			printf("CPF: %s\n",cadastro[i].cpf);
-
-		}
-
-	}
-
-	printf("\n\n");
-}
-
 void alterarIndividuo(int quantidade, Individuo cadastro[]){
 
 	int numero;
@@ -189,7 +137,7 @@ void alterarIndividuo(int quantidade, Individuo cadastro[]){
 
 	listarIndividuo(quantidade, cadastro);
 
-	printf("\nInforme o número de um perfil que deseja alterar: ");
+	printf("\nInforme o número de um perfil que deseja alterar:\n");
 	scanf("%d", &numero);
 	setbuf(stdin, NULL);
 
@@ -239,7 +187,7 @@ void alterarIndividuo(int quantidade, Individuo cadastro[]){
 
 			while(true) {
 
-				if(validarMatricula(cadastro[numero - 1].matricula) != 1) {
+				if(validarMatricula(matricula_nova) != 1) {
 
 					printf("\nMatrícula inválida. Informe novamente\n");
 					fgets(matricula_nova, TAM, stdin);
@@ -265,7 +213,7 @@ void alterarIndividuo(int quantidade, Individuo cadastro[]){
 
 			while(true) {
 
-				if(validarNome(cadastro[numero - 1].nome) != 1) {
+				if(validarNome(nome_novo) != 1) {
 
 					printf("\nNome inválido. Informe novamente.\n");
 					fgets(nome_novo, TAM, stdin);
@@ -292,7 +240,7 @@ void alterarIndividuo(int quantidade, Individuo cadastro[]){
 
 			while(true) {
 
-				if(validarSexo(cadastro[numero - 1].sexo) != 1) {
+				if(validarSexo(sexo_novo) != 1) {
 
 					printf("\nSexo inválido. Informe novamente.\n");
 					scanf("%c", &sexo_novo);
@@ -319,7 +267,7 @@ void alterarIndividuo(int quantidade, Individuo cadastro[]){
 
 			while(true) {
 
-				if(validarData(cadastro[numero - 1].data_nascimento) != 1) {
+				if(validarData(data_nova) != 1) {
 
 					printf("\nData inválida. Informe novamente.\n");
 					fgets(data_nova, TAM, stdin);
@@ -346,9 +294,9 @@ void alterarIndividuo(int quantidade, Individuo cadastro[]){
 
 			while(true) {
 
-				if(validarCPF(cadastro[numero - 1].cpf) != 1) {
+				if(validarCPF(cpf_novo) != 1) {
 
-					printf("\nCPFa inválido. Informe novamente.\n");
+					printf("\nCPF inválido. Informe novamente.\n");
 					fgets(cpf_novo, TAM, stdin);
 					setbuf(stdin, NULL);
 
@@ -376,7 +324,7 @@ void alterarIndividuo(int quantidade, Individuo cadastro[]){
 
 }
 
-int removerIndividuo(int quantidade, Individuo cadastro[]) {
+void removerIndividuo(int quantidade, Individuo cadastro[]) {
 
 	int posicao;
 
@@ -387,7 +335,9 @@ int removerIndividuo(int quantidade, Individuo cadastro[]) {
 	setbuf(stdin, NULL);
 	posicao--;
 
-	for(int i = posicao; i < quantidade; i++) {
+	int i;
+
+	for(i = posicao; i < quantidade; i++) {
 
 		strcpy(cadastro[i].matricula, cadastro[i+1].matricula);
 		strcpy(cadastro[i].nome, cadastro[i+1].nome);
@@ -401,7 +351,7 @@ int removerIndividuo(int quantidade, Individuo cadastro[]) {
 
 	listarIndividuo(quantidade, cadastro);
 
-	return posicao;
+
 
 }
 
@@ -503,26 +453,197 @@ void cadastrarDisciplinas(int quantidade_professores, int quantidade_disciplinas
 
 }
 
-void listarDisciplinas(int quantidade, Disciplina cadastro[]){
+void alterarDisciplinas(int quantidade, Disciplina cadastro[]){
 
-	if(quantidade <= 0){
+	int numero;
+	char nome_novo[TAM];
+	char professor_novo[TAM];
+	char codigo_novo[TAM];
+	char semestre_novo = '\0';
 
-		printf("Cadastro vazio.\n");
+	listarDisciplinas(quantidade, cadastro);
 
-	}else{
+	printf("\nInforme o número de uma disciplina que deseja alterar:\n");
+	scanf("%d", &numero);
+	setbuf(stdin, NULL);
 
-		for(int i = 0; i < quantidade; i++){
+	int true = 1;
 
-			printf("Código: %s\n",cadastro[i].codigo);
-			printf("Nome: %s\n",cadastro[i].nome);
-			printf("Professor: %s\n",cadastro[i].professor);
-			printf("Semestre: %c\n",cadastro[i].semestre);
+	while(true) {
+
+		if(numero <= 0 || numero > quantidade) {
+
+			printf("\nRegistro inexistente. Informe novamente.\n");
+			scanf("%d", &numero);
+			setbuf(stdin, NULL);
+
+		} else {
+
+			break;
 
 		}
 
 	}
 
-	printf("\n\n");
+	int opcao;
+
+	printf("Qual dado deseja alterar?\n");
+	scanf("%d", &opcao);
+
+	printf("_____________________\n");
+	printf("|                   |\n");
+	printf("|*******************|\n");
+	printf("|*    1.Nome       *|\n");
+	printf("|*    2.Professor  *|\n");
+	printf("|*    3.Código     *|\n");
+	printf("|*    4.Semestre   *|\n");
+	printf("|*******************|\n");
+	printf("|___________________|\n");
+
+	switch(opcao) {
+
+		case 1: {
+
+			printf("\nInforme o novo nome da disciplina:\n");
+			fgets(nome_novo, TAM, stdin);
+			setbuf(stdin, NULL);
+
+			while(true) {
+
+				if(validarNome(nome_novo) != 1) {
+
+					printf("\nNome inválido. Informe novamente\n");
+					fgets(nome_novo, TAM, stdin);
+					setbuf(stdin, NULL);
+
+				} else {
+
+					strcpy(cadastro[numero - 1].nome, nome_novo);
+					break;
+
+				}
+
+			}
+
+			break;
+
+		}
+
+		case 2: {
+			printf("\nInforme o nome do/da docente:\n");
+			fgets(professor_novo, TAM, stdin);
+			setbuf(stdin, NULL);
+
+			while(true) {
+
+				if(validarNome(professor_novo) != 1) {
+
+					printf("\nNome inválido. Informe novamente.\n");
+					fgets(professor_novo, TAM, stdin);
+					setbuf(stdin, NULL);
+
+				} else {
+
+					strcpy(cadastro[numero - 1].professor, professor_novo);
+					break;
+
+				}
+
+			}
+
+			break;
+
+		}
+
+		case 3: {
+
+			printf("\nInforme o novo código:\n");
+			fgets(codigo_novo, TAM, stdin);
+			setbuf(stdin, NULL);
+
+			while(true) {
+
+				if(validarCodigo(codigo_novo) != 1) {
+
+					printf("\nCódigo inválido. Informe novamente.\n");
+					fgets(codigo_novo, TAM, stdin);
+					setbuf(stdin, NULL);
+
+				} else {
+
+					strcpy(cadastro[numero - 1].codigo, codigo_novo);
+					break;
+
+				}
+
+			}
+
+			break;
+
+		}
+
+		case 4: {
+
+			printf("\nInforme o novo semestre:\n");
+			scanf("%c", &semestre_novo);
+			setbuf(stdin, NULL);
+
+			while(true) {
+
+				if(validarSemestre(semestre_novo) != 1) {
+
+					printf("\nData inválida. Informe novamente.\n");
+					scanf("%c", &semestre_novo);
+					setbuf(stdin, NULL);
+
+				} else {
+
+					cadastro[numero - 1].semestre = semestre_novo;
+					break;
+
+				}
+
+			}
+
+			break;
+
+		}
+
+		default: {
+
+			printf("\nOpção inválida.\n");
+			break;
+
+		}
+
+	}
 
 }
 
+void removerDisciplinas(int quantidade, Disciplina cadastro[]){
+
+	int posicao;
+
+	listarDisciplinas(quantidade, cadastro);
+
+	printf("\nInforme qual disciplina deseja deletar:\n");
+	scanf("%d", &posicao);
+	setbuf(stdin, NULL);
+	posicao--;
+
+	int i;
+
+	for(i = posicao; i < quantidade; i++) {
+
+		strcpy(cadastro[i].codigo, cadastro[i+1].codigo);
+		strcpy(cadastro[i].professor, cadastro[i+1].professor);
+		strcpy(cadastro[i].nome, cadastro[i+1].nome);
+		cadastro[i].semestre = cadastro[i+1].semestre;
+
+	}
+
+	quantidade--;
+
+	listarDisciplinas(quantidade, cadastro);
+
+}
