@@ -12,6 +12,16 @@ typedef struct dados_01{
 
 typedef struct dados_02{
 
+	char data_nascimento_temp[TAM];
+	char matricula_temp[TAM];
+	char nome_temp[TAM];
+	char cpf_temp[TAM];
+	char sexo_temp;
+
+}Individuo_temp;
+
+typedef struct dados_03{
+
 	char nome[TAM];
 	char professor[TAM];
 	char codigo[TAM];
@@ -28,6 +38,8 @@ void cadastrarIndividuo(int quantidade, Individuo cadastro[]);
 void listarIndividuo(int quantidade, Individuo cadastro[]);
 void alterarIndividuo(int quantidade, Individuo cadastro[]);
 void removerIndividuo(int quantidade, Individuo cadastro[]);
+void listarIndividuoSexo(int quantidade, Individuo cadastro[]);
+void listarIndividuoSortPorNome(int quantidade, Individuo cadastro[], Individuo_temp cadastro_temp[]);
 
 //métodos para disciplinas
 void cadastrarDisciplinas(int quantidade_professores, int quantidade_disciplinas, Disciplina cadastro_disciplinas[], Individuo cadastro_individuos[]);

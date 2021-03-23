@@ -167,6 +167,7 @@ void alterarIndividuo(int quantidade, Individuo cadastro[]){
 	printf("_____________________\n");
 	printf("|                   |\n");
 	printf("|*******************|\n");
+	printf("|*******************|\n");
 	printf("|*    1.Matricula  *|\n");
 	printf("|*    2.Nome       *|\n");
 	printf("|*    3.Sexo       *|\n");

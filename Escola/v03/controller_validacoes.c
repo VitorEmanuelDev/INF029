@@ -291,27 +291,27 @@ int validarProfessor(int quantidade_professores, int quantidade_disciplinas, Dis
 	size_t tam_disciplina = sizeof(cadastro_disciplinas) / sizeof(cadastro_disciplinas[0]);
 	size_t tam_individuo = sizeof(cadastro_professores) / sizeof(cadastro_professores[0]);
 
-	int flag = 0;
+	//int flag = 0;
 	int result = -1;
 
 	if(quantidade_professores > 0 && quantidade_disciplinas > 0){
 
-			for(int i = 0; i < tam_disciplina; i++){
+		for(int i = 0; i < tam_disciplina; i++){
 
-				if(result != 1){
+			if(result != 1){
 
-					for(int j = 0; j < tam_individuo; j++){
+				for(int j = 0; j < tam_individuo; j++){
 
-						if(strcmp(cadastro_disciplinas[i].professor, cadastro_professores[j].nome) == 0){
+					if(strcmp(cadastro_disciplinas[i].professor, cadastro_professores[j].nome) == 0){
 
-							result = 1;
-							break;
+						result = 1;
+						break;
 
-						}
 					}
 				}
-
 			}
+
+		}
 
 	}
 
