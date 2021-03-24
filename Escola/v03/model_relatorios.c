@@ -358,7 +358,6 @@ void listarIndividuosSortPorData(int quantidade, Individuo cadastro[], Individuo
 		}
 	 }
 
-	printf("Lista - Data de nascimento");
 	for(int i = 0; i < quantidade; i++){
 
 		printf("Numero: %d\n", i+1);
