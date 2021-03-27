@@ -50,7 +50,7 @@ int menuPrincipal(int opcao){
 	printf("|*                                                            *|\n");
 	printf("|*    21.Listar Disciplinas                                   *|\n");//ok
 	printf("|*    22.Lista de Disciplinas e alunos matrículados           *|\n");//ok
-	//printf("|*    22.Lista de Disciplinas com mais de 40 vagas            *|\n");//P2
+	printf("|*    23.Lista de Disciplinas com mais de 40 vagas            *|\n");//ok
 	printf("|*                                                            *|\n");
 	printf("|**************************************************************|\n");
 	printf("|*                                                            *|\n");
@@ -355,8 +355,9 @@ int main(){
 			}
 			case 23: {
 
-				printf("\n*** Lista de Disciplinas e alunos matrículados  ***\n\n");
-				listarAlunoDisciplinas(quantidade_disciplinas, cadastro_disciplinas, quantidade_professores, cadastro_professores);
+				printf("\n*** Lista de Disciplinas com mais de 40 vagas ***\n\n");
+				listarAlunoDisciplinasMaisDe40Vagas(quantidade_disciplinas, cadastro_disciplinas, quantidade_professores, cadastro_professores);
+
 
 				break;
 

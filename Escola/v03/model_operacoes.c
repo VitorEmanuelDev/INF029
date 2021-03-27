@@ -658,6 +658,8 @@ void matricularAlunoDisciplinas(int quantidade_disciplinas, Disciplina cadastro_
 	int alunos_cadastrados;
 	int true = 1;
 
+	listarDisciplinas(quantidade_disciplinas, cadastro_disciplinas);
+
 	printf("\nInforme o ID da disciplina em que deseja cadastrar um aluno(a): ");
 	scanf("%d", &id_disciplina);
 	setbuf(stdin, NULL);

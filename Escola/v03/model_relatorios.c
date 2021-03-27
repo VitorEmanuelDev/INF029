@@ -509,3 +509,33 @@ void listarAlunoDisciplinas(int quantidade_disciplinas, Disciplina cadastro_disc
 		}
 	}
 }
+
+void listarAlunoDisciplinasMaisDe40Vagas(int quantidade_disciplinas, Disciplina cadastro_disciplinas[], int quantidade_professores, Individuo cadastro_professores[]){
+
+	int alunos_cadastrados;
+
+	if(quantidade_disciplinas <= 0) {
+
+		printf("\nNão há registros!\n\n");
+
+	} else {
+
+		for(int i = 0; i < quantidade_disciplinas; i++) {
+
+			alunos_cadastrados = cadastro_disciplinas[i].quantidade_alunos_disciplina;
+
+			if (alunos_cadastrados < 5){
+
+				printf("Numero: %d\n", i+1);
+				printf("Código: %s\n",cadastro_disciplinas[i].codigo);
+				printf("Nome da disciplina: %s\n",cadastro_disciplinas[i].nome);
+				printf("Alunos matriculados na disciplina: %d\n", alunos_cadastrados);
+				printf("\nID do docente: %d", cadastro_disciplinas[i].id_professor);
+				printf("\nNome do docente: %s", cadastro_professores[cadastro_disciplinas[i].id_professor - 1].nome);
+				printf("Semestre: %d\n",cadastro_disciplinas[i].semestre);
+
+			}
+
+		}
+	}
+}

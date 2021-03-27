@@ -65,6 +65,8 @@ void removerDisciplinas(int quantidade, Disciplina cadastro[]);
 void matricularAlunoDisciplinas(int quantidade_disciplinas, Disciplina cadastro_disciplinas[], int quantidade_alunos, Individuo cadastro_alunos[]);
 void listarAlunoDisciplinas(int quantidade_disciplinas, Disciplina cadastro_disciplinas[], int quantidade_professores, Individuo cadastro_professores[]);
 void removerAlunoDisciplinas(int quantidade_disciplinas, Disciplina cadastro_disciplinas[]);
+void listarAlunoDisciplinasMaisDe40Vagas(int quantidade_disciplinas, Disciplina cadastro_disciplinas[], int quantidade_professores, Individuo cadastro_professores[]);
+
 
 //validacoes
 int validarMatricula(char matricula[]);
