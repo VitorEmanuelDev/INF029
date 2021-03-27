@@ -32,15 +32,6 @@ typedef struct dados_03{
 
 }Disciplina;
 
-/*typedef struct dados_04{
-
-	char nome_temp[TAM];
-	char professor_temp[TAM];
-	char codigo_temp[TAM];
-	char semestre_temp;
-
-}Disciplina_temp;*/
-
 struct tm* tempo_atual;
 
 //menu
@@ -66,6 +57,7 @@ void matricularAlunoDisciplinas(int quantidade_disciplinas, Disciplina cadastro_
 void listarAlunoDisciplinas(int quantidade_disciplinas, Disciplina cadastro_disciplinas[], int quantidade_professores, Individuo cadastro_professores[]);
 void removerAlunoDisciplinas(int quantidade_disciplinas, Disciplina cadastro_disciplinas[]);
 void listarAlunoDisciplinasMaisDe40Vagas(int quantidade_disciplinas, Disciplina cadastro_disciplinas[], int quantidade_professores, Individuo cadastro_professores[]);
+void listarAlunoEmMaisDe3Disciplinas(int quantidade_disciplinas, Disciplina cadastro_disciplinas[], int quantidade_alunos, Individuo cadastro_alunos[]);
 
 
 //validacoes

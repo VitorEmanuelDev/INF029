@@ -33,7 +33,7 @@ int menuPrincipal(int opcao){
 	printf("|*    13.Listar Alunos(as) por sexo                           *|\n");//ok
 	printf("|*    14.Listar Alunos(as) por ordem alfabética               *|\n");//ok
 	printf("|*    15.Listar Alunos(as) por nascimento                     *|\n");//ok
-	//printf("|*    16.Lista de alunos em menos de 3 disciplinas            *|\n");//P2
+	printf("|*    16.Lista de alunos em menos de 3 disciplinas            *|\n");//P2
 	printf("|*                                                            *|\n");
 	printf("|**************************************************************|\n");
 	printf("|*                                                            *|\n");
@@ -305,6 +305,13 @@ int main(){
 				printf("\n*** Lista por data de nascimento - Alunos(as) ***\n\n");
 				listarIndividuosSortPorData(quantidade_alunos, cadastro_alunos, cadastro_alunos_temp);
 
+				break;
+
+			}
+			case 16: {
+
+				printf("\n*** Lista de alunos em menos de 3 disciplinas ***\n\n");
+				listarAlunoEmMaisDe3Disciplinas(quantidade_disciplinas, cadastro_disciplinas, quantidade_alunos, cadastro_alunos);
 				break;
 
 			}
