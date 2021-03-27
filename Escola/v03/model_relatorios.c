@@ -544,8 +544,6 @@ void listarAlunoDisciplinasMaisDe40Vagas(int quantidade_disciplinas, Disciplina 
 void listarAlunoEmMaisDe3Disciplinas(int quantidade_disciplinas, Disciplina cadastro_disciplinas[], int quantidade_alunos, Individuo cadastro_alunos[]){
 
 	int count = 0;
-	int true = 1;
-	int j;
 
 	if(quantidade_disciplinas <= 0) {
 
@@ -555,7 +553,7 @@ void listarAlunoEmMaisDe3Disciplinas(int quantidade_disciplinas, Disciplina cada
 
 		for(int i = 0; i < quantidade_disciplinas; i++) {
 
-			for(j = 0; j < quantidade_alunos; j++){
+			for(int j = 0; j < quantidade_alunos; j++){
 
 				if(strcmp(cadastro_disciplinas[i].aluno[i].nome, cadastro_alunos[j].nome) == 0)
 					count++;
@@ -568,7 +566,7 @@ void listarAlunoEmMaisDe3Disciplinas(int quantidade_disciplinas, Disciplina cada
 				printf("Código: %s\n",cadastro_disciplinas[i].codigo);
 				printf("Nome da disciplina: %s\n",cadastro_disciplinas[i].nome);
 				printf("\nID do docente: %d", cadastro_disciplinas[i].id_professor);
-				printf("\nNome do aluno(a): %s", cadastro_alunos[j].nome);
+				printf("\nNome do aluno(a): %s", cadastro_disciplinas[i].aluno[i].nome);
 				printf("Semestre: %d\n",cadastro_disciplinas[i].semestre);
 
 			}

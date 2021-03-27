@@ -461,7 +461,7 @@ void alterarDisciplinas(int quantidade, Disciplina cadastro[], int quantidade_pr
 	char nome_novo[TAM];
 	char professor_novo[TAM];
 	char codigo_novo[TAM];
-	char semestre_novo = '\0';
+	int semestre_novo;
 
 	listarDisciplinas(quantidade, cadastro);
 
