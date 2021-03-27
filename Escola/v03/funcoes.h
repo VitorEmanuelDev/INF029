@@ -24,19 +24,22 @@ typedef struct dados_03{
 
 	char nome[TAM];
 	char professor[TAM];
+	int  id_professor;
 	char codigo[TAM];
-	char semestre;
+	int semestre;
+	int quantidade_alunos_disciplina;
+	Individuo aluno[TAM];
 
 }Disciplina;
 
-typedef struct dados_04{
+/*typedef struct dados_04{
 
 	char nome_temp[TAM];
 	char professor_temp[TAM];
 	char codigo_temp[TAM];
 	char semestre_temp;
 
-}Disciplina_temp;
+}Disciplina_temp;*/
 
 struct tm* tempo_atual;
 
@@ -57,9 +60,11 @@ void listarAniversariantes(int quantidade_alunos, Individuo cadastro_alunos[], i
 //métodos para disciplinas
 void cadastrarDisciplinas(int quantidade_professores, int quantidade_disciplinas, Disciplina cadastro_disciplinas[], Individuo cadastro_individuos[]);
 void listarDisciplinas(int quantidade, Disciplina cadastro[]);
-void alterarDisciplinas(int quantidade, Disciplina cadastro[]);
+void alterarDisciplinas(int quantidade, Disciplina cadastro[], int quantidade_professores);
 void removerDisciplinas(int quantidade, Disciplina cadastro[]);
-
+void matricularAlunoDisciplinas(int quantidade_disciplinas, Disciplina cadastro_disciplinas[], int quantidade_alunos, Individuo cadastro_alunos[]);
+void listarAlunoDisciplinas(int quantidade_disciplinas, Disciplina cadastro_disciplinas[], int quantidade_professores, Individuo cadastro_professores[]);
+void removerAlunoDisciplinas(int quantidade_disciplinas, Disciplina cadastro_disciplinas[]);
 
 //validacoes
 int validarMatricula(char matricula[]);
@@ -69,4 +74,6 @@ int validarData(char data_nascimento[]);
 int validarSexo(char sexo);
 int validarCodigo(char codigo[]);
 int validarProfessor(int quantidade_professores, int quantidade_disciplinas, Disciplina cadastro_disciplinas[], Individuo cadastro_professores[]);
-int validarSemestre(char semestre);
+int validarSemestre(int semestre);
+int validarAlunoDisciplina(int quantidade_alunos, int quantidade_disciplinas, Disciplina cadastro_disciplinas[], Individuo cadastro_alunos[]);
+

@@ -320,10 +320,43 @@ int validarProfessor(int quantidade_professores, int quantidade_disciplinas, Dis
 
 }
 
+int validarAlunoDisciplina(int quantidade_alunos, int quantidade_disciplinas, Disciplina cadastro_disciplinas[], Individuo cadastro_alunos[]){
 
-int validarSemestre(char semestre){
+	size_t tam_disciplina = sizeof(cadastro_disciplinas) / sizeof(cadastro_disciplinas[0]);
+	size_t tam_individuo = sizeof(cadastro_alunos) / sizeof(cadastro_alunos[0]);
 
-	if(semestre == '1' || semestre == '2'){
+	//int flag = 0;
+	int result = -1;
+
+	if(quantidade_alunos > 0 && quantidade_disciplinas > 0){
+
+		for(int i = 0; i < tam_disciplina; i++){
+
+			if(result != 1){
+
+				for(int j = 0; j < tam_individuo; j++){
+
+					if(strcmp(cadastro_disciplinas[i].aluno, cadastro_alunos[j].nome) == 0){
+
+						result = 1;
+						break;
+
+					}
+				}
+			}
+
+		}
+
+	}
+
+    return result;
+
+}
+
+
+int validarSemestre(int semestre){
+
+	if(semestre > 0 && semestre <= 12 ){
 
 		return 1;
 

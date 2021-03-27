@@ -466,7 +466,7 @@ void listarDisciplinas(int quantidade, Disciplina cadastro[]){
 			printf("Código: %s\n",cadastro[i].codigo);
 			printf("Nome: %s\n",cadastro[i].nome);
 			printf("Professor: %s\n",cadastro[i].professor);
-			printf("Semestre: %c\n",cadastro[i].semestre);
+			printf("Semestre: %d\n",cadastro[i].semestre);
 
 		}
 
@@ -474,4 +474,38 @@ void listarDisciplinas(int quantidade, Disciplina cadastro[]){
 
 	printf("\n\n");
 
+}
+
+
+void listarAlunoDisciplinas(int quantidade_disciplinas, Disciplina cadastro_disciplinas[], int quantidade_professores, Individuo cadastro_professores[]){
+
+	int alunos_cadastrados;
+
+	if(quantidade_disciplinas <= 0) {
+
+		printf("\nNão há registros!\n\n");
+
+	} else {
+
+		for(int i = 0; i < quantidade_disciplinas; i++) {
+
+			alunos_cadastrados = cadastro_disciplinas[i].quantidade_alunos_disciplina;
+
+			printf("Numero: %d\n", i+1);
+			printf("Código: %s\n",cadastro_disciplinas[i].codigo);
+			printf("Nome da disciplina: %s\n",cadastro_disciplinas[i].nome);
+			printf("Alunos matriculados na disciplina: %d\n", alunos_cadastrados);
+			printf("\nID do docente: %d", cadastro_disciplinas[i].id_professor);
+			printf("\nNome do docente: %s", cadastro_professores[cadastro_disciplinas[i].id_professor - 1].nome);
+
+			printf("Semestre: %d\n",cadastro_disciplinas[i].semestre);
+
+			for(int j = 0; j < alunos_cadastrados; j++) {
+
+				printf("Discente %d: %s", j + 1, cadastro_disciplinas[i].aluno[j].nome);
+
+			}
+
+		}
+	}
 }

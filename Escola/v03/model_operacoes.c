@@ -415,7 +415,7 @@ void cadastrarDisciplinas(int quantidade_professores, int quantidade_disciplinas
 
     while(errado) {
 
-    	validaProfessor = validarProfessor(quantidade_professores,quantidade_disciplinas, cadastro_disciplinas[quantidade_disciplinas].professor, cadastro_professores[quantidade_professores].nome);
+    	validaProfessor = validarProfessor(quantidade_professores, quantidade_disciplinas, cadastro_disciplinas[quantidade_disciplinas].professor, cadastro_professores[quantidade_professores].nome);
 
 		if(validaProfessor!= 1) {
 
@@ -431,7 +431,7 @@ void cadastrarDisciplinas(int quantidade_professores, int quantidade_disciplinas
 	}
 
     printf("Informe o semestre (1 ou 2)\n");
-    scanf("%c", &cadastro_disciplinas[quantidade_disciplinas].semestre);
+    scanf("%d", &cadastro_disciplinas[quantidade_disciplinas].semestre);
 	setbuf(stdin, NULL);
 
 	while(errado) {
@@ -441,7 +441,7 @@ void cadastrarDisciplinas(int quantidade_professores, int quantidade_disciplinas
 		if(validaSemestre != 1) {
 
 			printf("\nSemestre inválido\n");
-			scanf("%c", &cadastro_disciplinas[quantidade_disciplinas].semestre);
+			scanf("%d", &cadastro_disciplinas[quantidade_disciplinas].semestre);
 			setbuf(stdin, NULL);
 
 		} else {
@@ -455,9 +455,9 @@ void cadastrarDisciplinas(int quantidade_professores, int quantidade_disciplinas
 
 }
 
-void alterarDisciplinas(int quantidade, Disciplina cadastro[]){
+void alterarDisciplinas(int quantidade, Disciplina cadastro[], int quantidade_professores){
 
-	int numero;
+	int numero = 0;
 	char nome_novo[TAM];
 	char professor_novo[TAM];
 	char codigo_novo[TAM];
@@ -587,15 +587,15 @@ void alterarDisciplinas(int quantidade, Disciplina cadastro[]){
 		case 4: {
 
 			printf("\nInforme o novo semestre:\n");
-			scanf("%c", &semestre_novo);
+			scanf("%d", &semestre_novo);
 			setbuf(stdin, NULL);
 
 			while(true) {
 
 				if(validarSemestre(semestre_novo) != 1) {
 
-					printf("\nData inválida. Informe novamente.\n");
-					scanf("%c", &semestre_novo);
+					printf("\nSemestre inválido. Informe novamente.\n");
+					scanf("%d", &semestre_novo);
 					setbuf(stdin, NULL);
 
 				} else {
@@ -649,3 +649,134 @@ void removerDisciplinas(int quantidade, Disciplina cadastro[]){
 	listarDisciplinas(quantidade, cadastro);
 
 }
+
+
+void matricularAlunoDisciplinas(int quantidade_disciplinas, Disciplina cadastro_disciplinas[], int quantidade_alunos, Individuo cadastro_alunos[]){
+
+	int id_aluno;
+	int id_disciplina;
+	int alunos_cadastrados;
+	int true = 1;
+
+	printf("\nInforme o ID da disciplina em que deseja cadastrar um aluno(a): ");
+	scanf("%d", &id_disciplina);
+	setbuf(stdin, NULL);
+
+	while(true) {
+
+		if(id_disciplina <= 0 || id_disciplina > quantidade_disciplinas) {
+
+			printf("\nID inválido! Informe novamente.\n");
+			scanf("%d", &id_disciplina);
+			setbuf(stdin, NULL);
+
+		} else {
+
+			break;
+
+		}
+
+	}
+
+	id_disciplina--;
+
+	alunos_cadastrados = cadastro_disciplinas[id_disciplina].quantidade_alunos_disciplina;
+
+	printf("\nInforme o ID do aluno que deseja cadastrar na disciplina: ");
+	scanf("%d", &id_aluno);
+	setbuf(stdin, NULL);
+
+	while(true) {
+
+		if(id_aluno <= 0 || id_aluno > quantidade_alunos) {
+
+			printf("\nID inválido! Informe novamente.\n");
+			scanf("%d", &id_aluno);
+			setbuf(stdin, NULL);
+
+		} else {
+
+			break;
+
+		}
+
+	}
+
+	id_aluno--;
+
+	strcpy(cadastro_disciplinas[id_disciplina].aluno[alunos_cadastrados].matricula, cadastro_alunos[id_aluno].matricula);
+	strcpy(cadastro_disciplinas[id_disciplina].aluno[alunos_cadastrados].nome, cadastro_alunos[id_aluno].nome);
+	cadastro_disciplinas[id_disciplina].aluno[alunos_cadastrados].sexo = cadastro_alunos[id_aluno].sexo;
+	strcpy(cadastro_disciplinas[id_disciplina].aluno[alunos_cadastrados].data_nascimento, cadastro_alunos[id_aluno].data_nascimento);
+	strcpy(cadastro_disciplinas[id_disciplina].aluno[alunos_cadastrados].cpf, cadastro_alunos[id_aluno].cpf);
+
+	cadastro_disciplinas[id_disciplina].quantidade_alunos_disciplina++;
+
+}
+
+
+void removerAlunoDisciplinas(int quantidade_disciplinas, Disciplina cadastro_disciplinas[]){
+
+	int id_disciplina;
+	int id_aluno;
+	int alunos_cadastrados;
+	int true = 0;
+
+	printf("\nInforme o id da disciplina da qual deseja remover o aluno(a): ");
+	scanf("%d", &id_disciplina);
+	setbuf(stdin, NULL);
+
+	while(true) {
+
+		if(id_disciplina <= 0 || id_disciplina > quantidade_disciplinas) {
+
+			printf("\nNúmero de ID inválido! Informe novamente.\n");
+			scanf("%d", &id_disciplina);
+			setbuf(stdin, NULL);
+
+		} else {
+
+			break;
+
+		}
+
+	}
+
+	id_disciplina--;
+
+	printf("\nInforme o ID do aluno que deseja remover da disciplina: ");
+	scanf("%d", &id_aluno);
+	setbuf(stdin, NULL);
+
+	while(true) {
+
+		if(id_aluno <= 0 || id_aluno > cadastro_disciplinas[id_aluno].quantidade_alunos_disciplina) {
+
+			printf("\nNúmero inválido! Informe novamente.\n");
+			scanf("%d", &id_aluno);
+
+		} else {
+
+			break;
+
+		}
+	}
+
+	id_aluno--;
+
+	alunos_cadastrados = cadastro_disciplinas[id_disciplina].quantidade_alunos_disciplina;
+
+	for(int i = id_aluno; i < alunos_cadastrados; i++) {
+
+		strcpy(cadastro_disciplinas[id_disciplina].aluno[id_aluno].matricula, cadastro_disciplinas[i].aluno[i + 1].matricula);
+		strcpy(cadastro_disciplinas[id_disciplina].aluno[id_aluno].nome, cadastro_disciplinas[i].aluno[i + 1].nome);
+		cadastro_disciplinas[id_disciplina].aluno[id_aluno].sexo = cadastro_disciplinas[i].aluno[i + 1].sexo;
+		strcpy(cadastro_disciplinas[id_disciplina].aluno[id_aluno].data_nascimento, cadastro_disciplinas[i].aluno[i + 1].data_nascimento);
+		strcpy(cadastro_disciplinas[id_disciplina].aluno[id_aluno].cpf, cadastro_disciplinas[i].aluno[i + 1].cpf);
+
+	}
+
+	cadastro_disciplinas[id_disciplina].quantidade_alunos_disciplina--;
+
+}
+

@@ -17,9 +17,11 @@ int menuPrincipal(int opcao){
 	printf("|    * ALUNOS *   |    * PROFESSORES *  |    * DISCIPLINAS *   |\n");
 	printf("|_________________|_____________________|______________________|\n");
 	printf("|                 |                     |                      |\n");
-	printf("|   1.Cadastrar   |    4.Cadastrar      |     7.Cadastrar      |\n");//ok
-	printf("|   2.Remover     |    5.Remover        |     8.Remover        |\n");//ok
-	printf("|   3.Atualizar   |    6.Atualizar      |     9.Atualizar      |\n");//ok
+	printf("|   1.Cadastrar   |    6.Cadastrar      |     9.Cadastrar      |\n");//ok
+	printf("|   2.Matricular  |    7.Remover        |     10.Remover       |\n");//ok
+	printf("|   3.Remover     |    8.Atualizar      |     11.Atualizar     |\n");//ok
+	printf("|   4.Atualizar   |                     |                      |\n");//ok
+	printf("|   5.Trancar     |                     |                      |\n");//ok
 	printf("|_________________|_____________________|______________________|\n");
 	printf("|                                                              |\n");
 	printf("|                      * RELATÓRIOS *                          |\n");
@@ -27,36 +29,36 @@ int menuPrincipal(int opcao){
 	printf("|*                                                            *|\n");
 	printf("|*                         ALUNOS                             *|\n");
 	printf("|*                                                            *|\n");
-	printf("|*    10.Listar Alunos(as)                                    *|\n");//ok
-	printf("|*    11.Listar Alunos(as) por sexo                           *|\n");//ok
-	printf("|*    12.Listar Alunos(as) por ordem alfabética               *|\n");//ok
-	printf("|*    13.Listar Alunos(as) por nascimento                     *|\n");//ok
-	printf("|*    14.Lista de alunos em menos de 3 disciplinas            *|\n");//P2
+	printf("|*    12.Listar Alunos(as)                                    *|\n");//ok
+	printf("|*    13.Listar Alunos(as) por sexo                           *|\n");//ok
+	printf("|*    14.Listar Alunos(as) por ordem alfabética               *|\n");//ok
+	printf("|*    15.Listar Alunos(as) por nascimento                     *|\n");//ok
+	//printf("|*    16.Lista de alunos em menos de 3 disciplinas            *|\n");//P2
 	printf("|*                                                            *|\n");
 	printf("|**************************************************************|\n");
 	printf("|*                                                            *|\n");
 	printf("|*                       PROFESORES                           *|\n");
 	printf("|*                                                            *|\n");
-	printf("|*    15.Listar Professores                                   *|\n");//ok
-	printf("|*    16.Listar Professores(as) por sexo                      *|\n");//ok
-	printf("|*    17.Listar Professores(as) por ordem alfabética          *|\n");//ok
-	printf("|*    18.Listar Professores(as) por data de nascimento        *|\n");//ok
+	printf("|*    17.Listar Professores                                   *|\n");//ok
+	printf("|*    18.Listar Professores(as) por sexo                      *|\n");//ok
+	printf("|*    19.Listar Professores(as) por ordem alfabética          *|\n");//ok
+	printf("|*    20.Listar Professores(as) por data de nascimento        *|\n");//ok
 	printf("|*                                                            *|\n");
 	printf("|**************************************************************|\n");
 	printf("|*                                                            *|\n");
 	printf("|*                       DISCIPLINAS                          *|\n");
 	printf("|*                                                            *|\n");
-	printf("|*   19.Listar Disciplinas                                    *|\n");//ok
-	printf("|*   20.Lista de Disciplina e alunos matrículados             *|\n");//P2
-	printf("|*   21.Lista de Disciplinas com mais de 40 vagas             *|\n");//P2
+	printf("|*    21.Listar Disciplinas                                   *|\n");//ok
+	printf("|*    22.Lista de Disciplinas e alunos matrículados           *|\n");//ok
+	//printf("|*    22.Lista de Disciplinas com mais de 40 vagas            *|\n");//P2
 	printf("|*                                                            *|\n");
 	printf("|**************************************************************|\n");
 	printf("|*                                                            *|\n");
-	printf("|*   22.Aniversariantes do mês                                *|\n");//ok
-	printf("|*   23.Procurar alunos ou professores no sistema             *|\n");//ok
+	printf("|*    24.Aniversariantes do mês                               *|\n");//ok
+	printf("|*    25.Procurar alunos ou professores no sistema            *|\n");//ok
 	printf("|*                                                            *|\n");
 	printf("|**************************************************************|\n");
-	printf("|*   24.Sair                                                 * |\n");
+	printf("|*   26.Sair                                                  *|\n");
 	printf("|______________________________________________________________|\n");
 
 	scanf("%d",&opcao);
@@ -73,11 +75,12 @@ int main(){
 	Disciplina cadastro_disciplinas[TAM];
 	Individuo_temp cadastro_alunos_temp[TAM];
 	Individuo_temp cadastro_professores_temp[TAM];
-	Disciplina_temp cadastro_disciplinas_temp[TAM];
+	//Disciplina_temp cadastro_disciplinas_temp[TAM];
 
 	int quantidade_alunos = 0;
 	int quantidade_professores = 0;
 	int quantidade_disciplinas = 0;
+	//int quantidade_alunos_disciplina = 0;
 
 	int escolha = 0;
 	int true = 1;
@@ -108,6 +111,23 @@ int main(){
 			}
 			case 2:{
 
+				if(quantidade_alunos < TAM){
+
+					printf("\n*** Matricule um aluno(a) ***\n\n");
+					matricularAlunoDisciplinas(quantidade_disciplinas, cadastro_disciplinas, quantidade_alunos, cadastro_alunos);
+					printf("Matricula realizada\n");
+					break;
+
+				}else{
+
+					printf("Erro ao cadsstrar.\n");
+					break;
+
+				}
+
+			}
+			case 3:{
+
 				if(quantidade_alunos > 0){
 
 					printf("\n*** Remova um perfil ***\n\n");
@@ -123,7 +143,7 @@ int main(){
 				}
 
 			}
-			case 3:{
+			case 4:{
 
 				if(quantidade_alunos > 0){
 
@@ -140,7 +160,24 @@ int main(){
 				}
 
 			}
-			case 4:{
+			case 5:{
+
+				if(quantidade_alunos > 0){
+
+					printf("\n*** Tranque uma matricula ***\n\n");
+					removerAlunoDisciplinas(quantidade_disciplinas, cadastro_disciplinas);
+					printf("Atualização realizada\n");
+					break;
+
+				}else{
+
+					printf("Não foi possível trancar a disciplina.");
+					break;
+
+				}
+
+			}
+			case 6: {
 
 				if(quantidade_professores < TAM){
 
@@ -157,7 +194,7 @@ int main(){
 				}
 
 			}
-			case 5:{
+			case 7:{
 
 				if(quantidade_professores > 0){
 
@@ -174,7 +211,7 @@ int main(){
 				}
 
 			}
-			case 6:{
+			case 8:{
 
 				if(quantidade_professores > 0){
 
@@ -191,7 +228,7 @@ int main(){
 				}
 
 			}
-			case 7:{
+			case 9:{
 
 				if(quantidade_disciplinas < TAM){
 
@@ -207,7 +244,7 @@ int main(){
 				}
 
 			}
-			case 8:{
+			case 10:{
 
 				if(quantidade_disciplinas > 0){
 
@@ -224,12 +261,12 @@ int main(){
 				}
 
 			}
-			case 9:{
+			case 11:{
 
 				if(quantidade_disciplinas > 0){
 
 					printf("\n*** Atualize uma disciplina ***\n\n");
-					alterarDisciplinas(quantidade_disciplinas, cadastro_disciplinas);
+					alterarDisciplinas(quantidade_disciplinas, cadastro_disciplinas, quantidade_professores);
 					printf("Atualização realizada\n");
 					break;
 
@@ -241,7 +278,7 @@ int main(){
 				}
 
 			}
-			case 10: {
+			case 12: {
 
 				printf("\n*** Lista geral - Alunos(as) ***\n");
 				listarIndividuo(quantidade_alunos, cadastro_alunos);
@@ -249,21 +286,21 @@ int main(){
 
 			}
 
-			case 11: {
+			case 13: {
 
 				printf("\n*** Lista por sexo - Alunos(as) ***\n\n");
 				listarIndividuoSexo(quantidade_alunos, cadastro_alunos);
 				break;
 
 			}
-			case 12: {
+			case 14: {
 
 				printf("\n*** Lista por nome - Alunos(as) ***\n\n");
 				listarIndividuoSortPorNome(quantidade_alunos, cadastro_alunos, cadastro_alunos_temp);
 				break;
 
 			}
-			case 13: {
+			case 15: {
 
 				printf("\n*** Lista por data de nascimento - Alunos(as) ***\n\n");
 				listarIndividuosSortPorData(quantidade_alunos, cadastro_alunos, cadastro_alunos_temp);
@@ -271,7 +308,7 @@ int main(){
 				break;
 
 			}
-			case 15: {
+			case 17: {
 
 				printf("\n*** Lista geral - Professores(as) ***\n");
 				listarIndividuo(quantidade_professores, cadastro_professores);
@@ -279,21 +316,21 @@ int main(){
 
 			}
 
-			case 16: {
+			case 18: {
 
 				printf("\n*** Lista por sexo - Professores(as) ***\n\n");
 				listarIndividuoSexo(quantidade_professores, cadastro_professores);
 				break;
 
 			}
-			case 17: {
+			case 19: {
 
 				printf("\n*** Lista por nome - Professores(as) ***\n\n");
 				listarIndividuoSortPorNome(quantidade_professores, cadastro_professores, cadastro_professores_temp);
 				break;
 
 			}
-			case 18: {
+			case 20: {
 
 				printf("\n*** Lista por data de nascimento - Professores(as) ***\n\n");
 				listarIndividuosSortPorData(quantidade_professores, cadastro_professores, cadastro_professores_temp);
@@ -301,7 +338,7 @@ int main(){
 				break;
 
 			}
-			case 19: {
+			case 21: {
 
 				printf("\n*** Lista geral - Disciplinas ***\n\n");
 				listarDisciplinas(quantidade_disciplinas, cadastro_disciplinas);
@@ -311,19 +348,34 @@ int main(){
 			}
 			case 22: {
 
-				printf("\n*** Procurar ***\n\n");
-				listarProcuraNome(quantidade_alunos, cadastro_alunos, quantidade_professores,cadastro_professores);
+				printf("\n*** Lista alunos(as) matriculados ***\n\n");
+				listarAlunoDisciplinas(quantidade_disciplinas, cadastro_disciplinas, quantidade_professores, cadastro_professores);
 				break;
 
 			}
 			case 23: {
+
+				printf("\n*** Lista de Disciplinas e alunos matrículados  ***\n\n");
+				listarAlunoDisciplinas(quantidade_disciplinas, cadastro_disciplinas, quantidade_professores, cadastro_professores);
+
+				break;
+
+			}case 24: {
 
 				printf("\n*** Aniversariantes do mês ***\n\n");
 				listarAniversariantes(quantidade_alunos, cadastro_alunos, quantidade_professores,cadastro_professores);
 				break;
 
 			}
-			case 24:{
+			case 25: {
+
+				printf("\n*** Procurar ***\n\n");
+				listarProcuraNome(quantidade_alunos, cadastro_alunos, quantidade_professores,cadastro_professores);
+				break;
+
+			}
+
+			case 26:{
 
 				printf("Saindo...");
 				true = 0;
