@@ -96,7 +96,7 @@ int validarCPF(char cpf[]) {
 }
 
 
-int validarMatricula(char matricula[]) {
+int validarMatricula(char matricula[]){
 
 	char caracteres[TAM];
 	int len = strlen(matricula);

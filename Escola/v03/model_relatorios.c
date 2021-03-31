@@ -540,39 +540,54 @@ void listarAlunoDisciplinasMaisDe40Vagas(int quantidade_disciplinas, Disciplina 
 	}
 }
 
-
+//em andamento
 void listarAlunoEmMaisDe3Disciplinas(int quantidade_disciplinas, Disciplina cadastro_disciplinas[], int quantidade_alunos, Individuo cadastro_alunos[]){
 
-	int count = 0;
 
-	if(quantidade_disciplinas <= 0) {
 
-		printf("\nNão há registros!\n\n");
+	if(quantidade_disciplinas <= 3) {
+
+		printf("\nNão há registros suficientes!\n\n");
 
 	} else {
 
-		for(int i = 0; i < quantidade_disciplinas; i++) {
+		for(int i = 0; i < quantidade_disciplinas; i++){
+
 
 			for(int j = 0; j < quantidade_alunos; j++){
 
-				if(strcmp(cadastro_disciplinas[i].aluno[i].nome, cadastro_alunos[j].nome) == 0)
-					count++;
+				if(toupper(strcmp(cadastro_disciplinas[i].aluno[j].nome, cadastro_alunos[j].nome) == 0)){
+
+
+				}
+
 
 			}
 
-			if(count < 3){
+			for(int k = 0; k < quantidade_alunos; k++){
 
-				printf("Numero: %d\n", i+1);
-				printf("Código: %s\n",cadastro_disciplinas[i].codigo);
-				printf("Nome da disciplina: %s\n",cadastro_disciplinas[i].nome);
-				printf("\nID do docente: %d", cadastro_disciplinas[i].id_professor);
-				printf("\nNome do aluno(a): %s", cadastro_disciplinas[i].aluno[i].nome);
-				printf("Semestre: %d\n",cadastro_disciplinas[i].semestre);
 
 			}
 
-			count = 0;
+
+			for(int l = 0; l < quantidade_alunos; l++){
+
+
+			}
+
+
+			for(int m = 0; m < quantidade_alunos; m++){
+
+
+			}
+
+
 
 		}
+
+
+
 	}
+
+
 }

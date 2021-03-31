@@ -32,6 +32,18 @@ typedef struct dados_03{
 
 }Disciplina;
 
+/*typedef struct dados_04{
+
+	char nome_temp[TAM];
+	char professor_temp[TAM];
+	int  id_professor_temp;
+	char codigo_temp[TAM];
+	int semestre_temp;
+	int quantidade_alunos_disciplina_temp;
+	Individuo aluno_temp[TAM];
+
+}Disciplina_temp;*/
+
 struct tm* tempo_atual;
 
 //menu

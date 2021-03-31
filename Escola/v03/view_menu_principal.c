@@ -33,7 +33,7 @@ int menuPrincipal(int opcao){
 	printf("|*    13.Listar Alunos(as) por sexo                           *|\n");//ok
 	printf("|*    14.Listar Alunos(as) por ordem alfabética               *|\n");//ok
 	printf("|*    15.Listar Alunos(as) por nascimento                     *|\n");//ok
-	printf("|*    16.Lista de alunos em menos de 3 disciplinas            *|\n");//P2
+//	printf("|*    16.Lista de alunos em menos de 3 disciplinas            *|\n");//em andamento
 	printf("|*                                                            *|\n");
 	printf("|**************************************************************|\n");
 	printf("|*                                                            *|\n");
@@ -73,14 +73,13 @@ int main(){
 	Individuo cadastro_alunos[TAM];
 	Individuo cadastro_professores[TAM];
 	Disciplina cadastro_disciplinas[TAM];
+	Disciplina cadastro_disciplinas_temp[TAM];
 	Individuo_temp cadastro_alunos_temp[TAM];
 	Individuo_temp cadastro_professores_temp[TAM];
-	//Disciplina_temp cadastro_disciplinas_temp[TAM];
 
 	int quantidade_alunos = 0;
 	int quantidade_professores = 0;
 	int quantidade_disciplinas = 0;
-	//int quantidade_alunos_disciplina = 0;
 
 	int escolha = 0;
 	int true = 1;
@@ -120,7 +119,7 @@ int main(){
 
 				}else{
 
-					printf("Erro ao cadsstrar.\n");
+					printf("Erro ao cadastrar.\n");
 					break;
 
 				}
