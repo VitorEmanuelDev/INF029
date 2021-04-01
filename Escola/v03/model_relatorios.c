@@ -540,7 +540,6 @@ void listarAlunoDisciplinasMaisDe40Vagas(int quantidade_disciplinas, Disciplina 
 	}
 }
 
-//em andamento
 void listarAlunoEmMaisDe3Disciplinas(int quantidade_disciplinas, Disciplina cadastro_disciplinas[], int quantidade_alunos, Individuo cadastro_alunos[]){
 
 
@@ -551,43 +550,55 @@ void listarAlunoEmMaisDe3Disciplinas(int quantidade_disciplinas, Disciplina cada
 
 	} else {
 
-		for(int i = 0; i < quantidade_disciplinas; i++){
 
 
-			for(int j = 0; j < quantidade_alunos; j++){
 
-				if(toupper(strcmp(cadastro_disciplinas[i].aluno[j].nome, cadastro_alunos[j].nome) == 0)){
+		for(int i = 0; i < quantidade_alunos; i++){
 
+			int disciplinas = 0;
+			int posicao = 0;
 
-				}
+			while(posicao <= quantidade_disciplinas){
 
-
-			}
-
-			for(int k = 0; k < quantidade_alunos; k++){
-
+				recursivoAlunoEmMaisDe3Disciplinas(quantidade_disciplinas, cadastro_disciplinas, cadastro_alunos, posicao, disciplinas);
 
 			}
 
+			if(disciplinas > 3){
 
-			for(int l = 0; l < quantidade_alunos; l++){
-
-
-			}
-
-
-			for(int m = 0; m < quantidade_alunos; m++){
-
+				printf("Matricula: %s\n",cadastro_alunos[i].matricula);
+				printf("Nome: %s\n",cadastro_alunos[i].nome);
 
 			}
-
 
 
 		}
 
 
+	}
+
+
+}
+
+void recursivoAlunoEmMaisDe3Disciplinas(int quantidade_disciplinas, Disciplina cadastro_disciplinas[], Individuo cadastro_alunos[], int posicao, int disciplinas){
+
+
+	for(int j = posicao; j < quantidade_disciplinas; j++){
+
+
+		if(strcmp(cadastro_disciplinas[posicao].aluno[j].nome, cadastro_alunos[posicao].nome) == 0){
+
+			j++;
+			posicao += j;
+			disciplinas++;
+			break;
+
+		}
+
+		break;
 
 	}
+
 
 
 }
