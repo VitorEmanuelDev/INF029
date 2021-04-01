@@ -70,7 +70,7 @@ void listarAlunoDisciplinas(int quantidade_disciplinas, Disciplina cadastro_disc
 void removerAlunoDisciplinas(int quantidade_disciplinas, Disciplina cadastro_disciplinas[]);
 void listarAlunoDisciplinasMaisDe40Vagas(int quantidade_disciplinas, Disciplina cadastro_disciplinas[], int quantidade_professores, Individuo cadastro_professores[]);
 void listarAlunoEmMaisDe3Disciplinas(int quantidade_disciplinas, Disciplina cadastro_disciplinas[], int quantidade_alunos, Individuo cadastro_alunos[]);
-void recursivoAlunoEmMaisDe3Disciplinas(int quantidade_disciplinas, Disciplina cadastro_disciplinas[], Individuo cadastro_alunos[], int posicao, int disciplinas);
+//void recursivoAlunoEmMaisDe3Disciplinas(int quantidade_disciplinas, Disciplina cadastro_disciplinas[], Individuo cadastro_alunos[], int posicao, int disciplinas, int i);
 
 //validacoes
 int validarMatricula(char matricula[]);

@@ -560,7 +560,21 @@ void listarAlunoEmMaisDe3Disciplinas(int quantidade_disciplinas, Disciplina cada
 
 			while(posicao <= quantidade_disciplinas){
 
-				recursivoAlunoEmMaisDe3Disciplinas(quantidade_disciplinas, cadastro_disciplinas, cadastro_alunos, posicao, disciplinas);
+				for(int j = posicao; j < quantidade_disciplinas; j++){
+
+
+					if(strcmp(cadastro_disciplinas[posicao].aluno[j].nome, cadastro_alunos[i].nome) == 0){
+
+						j++;
+						posicao += j;
+						disciplinas++;
+						break;
+
+					}
+
+					break;
+
+				}
 
 			}
 
@@ -580,13 +594,13 @@ void listarAlunoEmMaisDe3Disciplinas(int quantidade_disciplinas, Disciplina cada
 
 }
 
-void recursivoAlunoEmMaisDe3Disciplinas(int quantidade_disciplinas, Disciplina cadastro_disciplinas[], Individuo cadastro_alunos[], int posicao, int disciplinas){
+/*void recursivoAlunoEmMaisDe3Disciplinas(int quantidade_disciplinas, Disciplina cadastro_disciplinas[], Individuo cadastro_alunos[], int posicao, int disciplinas, int i){
 
 
 	for(int j = posicao; j < quantidade_disciplinas; j++){
 
 
-		if(strcmp(cadastro_disciplinas[posicao].aluno[j].nome, cadastro_alunos[posicao].nome) == 0){
+		if(strcmp(cadastro_disciplinas[posicao].aluno[j].nome, cadastro_alunos[i].nome) == 0){
 
 			j++;
 			posicao += j;
@@ -601,4 +615,4 @@ void recursivoAlunoEmMaisDe3Disciplinas(int quantidade_disciplinas, Disciplina c
 
 
 
-}
+}*/
