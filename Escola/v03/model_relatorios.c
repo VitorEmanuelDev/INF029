@@ -252,7 +252,7 @@ void listarIndividuosSortPorData(int quantidade, Individuo cadastro[], Individuo
 		}
 		digitos_01[len_digitos_01] = '\0';
 
-		int data_01 = atoi(digitos_01);
+		int data_01 = atoi(digitos_01[i]);
 
 		int dia_01 = data_01 / 1000000;
 		int mes_01 = data_01 % 1000000 / 10000;
@@ -279,7 +279,8 @@ void listarIndividuosSortPorData(int quantidade, Individuo cadastro[], Individuo
 			}
 			digitos_02[len_digitos_02] = '\0';
 
-			int data_02 = atoi(digitos_02);
+			int j = i + 1;
+			int data_02 = atoi(digitos_02[j]);
 
 			int dia_02 = data_02 / 1000000;
 			int mes_02 = data_02 % 1000000 / 10000;
