@@ -97,13 +97,19 @@ int q1(char *data)
 	}
 	digitos[len_digitos] = '\0';
     //converter sDia, sMes e sAno em inteiros (ex: atoi)
-	if(len_digitos > 5 || len_digitos < 9){
+	if(len_digitos > 3 && len_digitos < 9){
 
 		int data_int = atoi(digitos);
 		 //criar as variáveis iDia, iMes, iAno
 		int dia = data_int / 1000000;
 		int mes = data_int % 1000000 / 10000;
 		int ano = data_int % 10000;
+
+		if(ano >= 0 && ano <= 22)
+			ano = 2000 + ano;
+
+		if(ano > 22 && ano <= 99)
+			ano = 1900 + ano;
 
 		if(ano >= 1900 && ano <= 2100){
 

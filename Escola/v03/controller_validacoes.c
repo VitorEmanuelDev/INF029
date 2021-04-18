@@ -104,7 +104,7 @@ int validarMatricula(char matricula[]){
 
 	strcpy(caracteres, matricula);
 
-	if(len - 1 == 11){
+	//if(len - 1 == 12){
 
 		for(int i = 0; i < len; i++){
 
@@ -116,7 +116,7 @@ int validarMatricula(char matricula[]){
 			}
 
 		}
-
+/*
 		int digitos = atoi(caracteres);
 
 		int ano = digitos / 10000000;
@@ -127,7 +127,7 @@ int validarMatricula(char matricula[]){
 			flag = 0;
 
 		}
-
+*/
 
 		if((flag == 0) || ((strcmp(matricula,"00000000000") == 0) || (strcmp(matricula,"11111111111") == 0) || (strcmp(matricula,"22222222222") == 0) ||
 		(strcmp(matricula,"33333333333") == 0) || (strcmp(matricula,"44444444444") == 0) || (strcmp(matricula,"55555555555") == 0) ||
@@ -141,11 +141,11 @@ int validarMatricula(char matricula[]){
 
 		}
 
-	}else{
+	/*}else{
 
 		return -1;
 
-	}
+	}*/
 
 }
 
