@@ -76,6 +76,7 @@ int fatorial(int x)
  */
 
 int valida_numeros(int dia, int mes, int ano);
+int identifica_char(char caractere);
 
 int q1(char *data)
 {
@@ -88,10 +89,10 @@ int q1(char *data)
 
     	sDia[i] = data[i];
 
-    	if (i >= 2) return 0;
-
-    	if (sDia[i] < 48 || sDia[i] > 57)
+    	if (i > 1)
     		return 0;
+
+    	if (identifica_char(sDia[i]) == 1) return 0;
 
     }
 
@@ -110,15 +111,16 @@ int q1(char *data)
 	char sMes[3];
 	int j;
 	int len_mes = 0;
+	int cont_Mes = 0;
 
-	for (j = i; data[j] != '/'; j++, len_mes++){
+	for (j = i; data[j] != '/'; j++, cont_Mes++){
 
-	sMes[len_mes] = data[j];
+	sMes[cont_Mes] = data[j];
 
-	if (len_mes > 1) return 0;
+	if (cont_Mes > 1)
+		return 0;
 
-	if (sMes[i] < 48 || sMes[i] > 57)
-			return 0;
+	if (identifica_char(sMes[cont_Mes]) == 1) return 0;
 
 
 	}
@@ -137,21 +139,22 @@ int q1(char *data)
 
    	char sAno[5];
     int len_ano = 0;
+    int cont_Ano = 0;
 
-    for(int z = 0; sAno[z] != '\0'; z++)
+    for(int z = 0; data[z] != '\0'; z++)
     		   len_ano++;
 
-    for (i = j; i < len_ano; i++, len_ano++){
+    for (i = j; i < len_ano; i++, cont_Ano++){
 
-         sAno[len_ano] = data[i];
+         sAno[cont_Ano] = data[i];
 
-         	if (sAno[i] < 48 || sAno[i] > 57)
-         			return 0;
+         if (identifica_char(data[i]) == 1) return 0;
+
      }
 
-      if (len_ano != 2 && len_ano != 4) return 0;
+      if (cont_Ano != 2 && cont_Ano != 4) return 0;
 
-      sAno[len_ano] = '\0';
+      sAno[cont_Ano] = '\0';
 
       int iAno = atoi(sAno);
 
@@ -159,44 +162,36 @@ int q1(char *data)
 
 	 return retorno;
 
-
-
     //printf("%s\n", data) 28/12/1999;
 
 }
 
 int valida_numeros(int dia, int mes, int ano){
 
-	if(ano >= 1900 && ano <= 2100){
 
-		if (mes >= 1 && mes <= 12){
+    if ((dia < 1 || dia > 31) || (mes < 1 || mes > 12) || (ano < 1 || ano > 2020))
+        return 0;
 
-			if ((dia >= 1 && dia <= 31) && (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12))
-				return 1;
+    if (dia > 30 && (mes == 4 || mes == 6 || mes == 9 || mes == 11) )
+        return 0;
 
-			else if ((dia >= 1 && dia <= 30) && (mes == 4 || mes == 6 || mes == 9 || mes == 11))
-				return 1;
 
-			else if ((dia >= 1 && dia <= 28) && (mes == 2))
-				return 1;
+    if (dia > 29 && (mes == 2 && ano % 4 == 0 || ano % 400 == 0 && ano % 100 != 0) )
+        return 0;
+    if (dia > 28 && (mes == 2 && ano % 4 != 0 || ano % 400 != 0 && ano % 100 == 0) )
+        return 0;
 
-			else if (dia == 29 && mes == 2 && (ano % 400 == 0 || (ano % 4 == 0 && ano % 100 != 0)))
-				return 1;
+    return 1;
 
-			else
-				return 0;
+}
 
-		}else{
 
-			return 0;
+int identifica_char(char caractere){
 
-		}
-
-	}else{
-
-		return 0;
-
-	}
+    if (caractere < 48 || caractere > 57)
+        return 1;
+    else
+        return 0;
 
 }
 
@@ -220,7 +215,7 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
     int iDiaInicial, iMesInicial, iAnoInicial;
     int iDiaFinal, iMesFinal, iAnoFinal;
 
-    int i, j, cont_Mes = 0, cont_Ano = 0;
+    int i, j, len_mes = 0, len_ano = 0;
 
 
     int nDias, nMeses, nAnos;
@@ -239,8 +234,8 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
     sDia[i] = '\0';
     i++;
 
-    for (j = i, cont_Mes = 0; datainicial[j] != '/'; j++, cont_Mes++)
-        sMes[cont_Mes] = datainicial[j];
+    for (j = i, len_mes = 0; datainicial[j] != '/'; j++, len_mes++)
+        sMes[len_mes] = datainicial[j];
 
     sMes[j] = '\0';
     j++;
@@ -250,10 +245,10 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
     for(int k = 0; datainicial[k] != '\0'; k++)
     	   len_data_inicial++;
 
-    for (i = j, cont_Ano = 0; i < len_data_inicial; i++, cont_Ano++)
-       sAno[cont_Ano] = datainicial[i];
+    for (i = j, len_ano = 0; i < len_data_inicial; i++, len_ano++)
+       sAno[len_ano] = datainicial[i];
 
-    sAno[cont_Ano] = '\0';
+    sAno[len_ano] = '\0';
 
 
     iDiaInicial = atoi(sDia);
@@ -267,8 +262,8 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
     sDia[i] = '\0';
     i++;
 
-    for (j = i, cont_Mes = 0; datafinal[j] != '/'; j++, cont_Mes++)
-        sMes[cont_Mes] = datafinal[j];
+    for (j = i, len_mes = 0; datafinal[j] != '/'; j++, len_mes++)
+        sMes[len_mes] = datafinal[j];
 
     sMes[j] = '\0';
     j++;
@@ -278,10 +273,10 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
 	for(int k = 0; datafinal[k] != '\0'; k++)
 		len_data_final++;
 
-    for (i = j, cont_Ano = 0; i < len_data_final; i++, cont_Ano++)
-       sAno[cont_Ano] = datafinal[i];
+    for (i = j, len_ano = 0; i < len_data_final; i++, len_ano++)
+       sAno[len_ano] = datafinal[i];
 
-    sAno[cont_Ano] = '\0';
+    sAno[len_ano] = '\0';
 
     iDiaFinal = atoi(sDia);
     iMesFinal = atoi(sMes);
