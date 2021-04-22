@@ -169,7 +169,7 @@ int q1(char *data)
 int valida_numeros(int dia, int mes, int ano){
 
 
-    if ((dia < 1 || dia > 31) || (mes < 1 || mes > 12) || (ano < 1 || ano > 2020))
+    if ((dia < 1 || dia > 31) || (mes < 1 || mes > 12) || (ano < 1 || ano > 2021))
         return 0;
 
     if (dia > 30 && (mes == 4 || mes == 6 || mes == 9 || mes == 11) )
