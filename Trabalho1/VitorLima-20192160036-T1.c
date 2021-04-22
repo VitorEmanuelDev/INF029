@@ -211,22 +211,14 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
 {
 
     char sDia[3], sMes[3], sAno[5];
-
-    int iDiaInicial, iMesInicial, iAnoInicial;
-    int iDiaFinal, iMesFinal, iAnoFinal;
-
-    int i, j, len_mes = 0, len_ano = 0;
-
-
     int nDias, nMeses, nAnos;
-
-
 
     if (q1(datainicial) == 0)
         return 2;
     if (q1(datafinal) == 0)
         return 3;
 
+    int i;
 
     for (i = 0; datainicial[i] != '/'; i++)
         sDia[i] = datainicial[i];
@@ -234,12 +226,16 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
     sDia[i] = '\0';
     i++;
 
+    int j;
+    int len_mes = 0;
+
     for (j = i, len_mes = 0; datainicial[j] != '/'; j++, len_mes++)
         sMes[len_mes] = datainicial[j];
 
     sMes[j] = '\0';
     j++;
 
+    int len_ano = 0;
     int len_data_inicial = 0;
 
     for(int k = 0; datainicial[k] != '\0'; k++)
@@ -251,9 +247,9 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
     sAno[len_ano] = '\0';
 
 
-    iDiaInicial = atoi(sDia);
-    iMesInicial = atoi(sMes);
-    iAnoInicial = atoi(sAno);
+    int iDiaInicial = atoi(sDia);
+    int iMesInicial = atoi(sMes);
+    int iAnoInicial = atoi(sAno);
 
 
    for (i = 0; datafinal[i] != '/'; i++)
@@ -278,9 +274,9 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
 
     sAno[len_ano] = '\0';
 
-    iDiaFinal = atoi(sDia);
-    iMesFinal = atoi(sMes);
-    iAnoFinal = atoi(sAno);
+    int iDiaFinal = atoi(sDia);
+    int iMesFinal = atoi(sMes);
+    int iAnoFinal = atoi(sAno);
 
     if (iAnoFinal < iAnoInicial || (iAnoFinal == iAnoInicial && iMesFinal < iMesInicial) || (iAnoFinal == iAnoInicial && iMesFinal == iMesInicial && iDiaFinal < iDiaInicial))
         return 4;
@@ -291,7 +287,7 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
 
         if (mesFinalAnterior == 2){
 
-            if (mesFinalAnterior % 4 == 0 || mesFinalAnterior % 400 == 0 && (mesFinalAnterior % 100 != 0) )
+            if (iAnoFinal % 4 == 0 || iAnoFinal % 400 == 0 && (iAnoFinal % 100 != 0) )
                 iDiaFinal += 29;
             else
                 iDiaFinal += 28;
@@ -352,7 +348,7 @@ int q3(char *texto, char c, int isCaseSensitive)
 
     if (isCaseSensitive != 1)
         for(int i = 0; i < len; i++)
-            if (texto[i] == c || texto[i] == toupper(c) || texto[i] == tolower(c))
+            if (texto[i] == toupper(c) || texto[i] == tolower(c))
                 qtdOcorrencias++;
 
 
@@ -377,9 +373,53 @@ int q3(char *texto, char c, int isCaseSensitive)
  */
 int q4(char *strTexto, char *strBusca, int posicoes[30])
 {
-    int qtdOcorrencias = -1;
+    int len_texto = 0;
+
+    for(int k = 0; strTexto[k] != '\0'; k++)
+    	len_texto++;
+
+    int len_busca = 0;
+
+    for(int j = 0; strBusca[j] != '\0'; j++)
+    	len_busca++;
+
+    int q;
+    int w;
+    int e;
+    int indice;
+
+    for(q = 0; q < len_texto; q++){
+
+       if(strBusca[0] == strTexto[q]){
+
+           while(strBusca[w] == strTexto[q]){
+             q++;
+             w++;
+          }
+
+
+          if(w == len_busca){
+
+            posicoes[e] = q - (len_busca - 1) - indice;
+            e++;
+
+            posicoes[e] = q - indice;
+            e++;
+          }
+
+          w = 0;
+       }
+
+       if(strTexto[q] < 0 && strTexto[q + 1] < 0)
+    	   indice++;
+    }
+
+    int qtdOcorrencias = 0;
+
+    qtdOcorrencias = e/2;
 
     return qtdOcorrencias;
+
 }
 
 /*
