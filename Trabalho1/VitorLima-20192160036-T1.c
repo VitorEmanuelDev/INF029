@@ -373,52 +373,52 @@ int q3(char *texto, char c, int isCaseSensitive)
  */
 int q4(char *strTexto, char *strBusca, int posicoes[30])
 {
-    int len_texto = 0;
 
-    for(int k = 0; strTexto[k] != '\0'; k++)
-    	len_texto++;
+	int i = 0;
+	int j = 0;
+	int k = 0;
+	int acentos = 0;
+
+	int len_texto = 0;
+
+	for(int x = 0; strTexto[x] != '\0'; x++)
+	    len_texto++;
 
     int len_busca = 0;
 
-    for(int j = 0; strBusca[j] != '\0'; j++)
+    for(int y = 0; strBusca[y] != '\0'; y++)
     	len_busca++;
 
-    int q;
-    int w;
-    int e;
-    int indice;
+	for(i = 0; i < len_texto; i++){
 
-    for(q = 0; q < len_texto; q++){
+	   if(strBusca[0] == strTexto[i]){
 
-       if(strBusca[0] == strTexto[q]){
+		   while(strBusca[j] == strTexto[i]){
+			 i++;
+			 j++;
+		  }
 
-           while(strBusca[w] == strTexto[q]){
-             q++;
-             w++;
-          }
+		  if(j == len_busca){
 
+			posicoes[k] = i - (len_busca - 1) - acentos;
+			k++;
 
-          if(w == len_busca){
+			posicoes[k] = i - acentos;
+			k++;
+		  }
 
-            posicoes[e] = q - (len_busca - 1) - indice;
-            e++;
+		  j = 0;
+	   }
 
-            posicoes[e] = q - indice;
-            e++;
-          }
+	   if(strTexto[i] < 0 && strTexto[i + 1] < 0)
+		   acentos++;
+	}
 
-          w = 0;
-       }
+	int qtdOcorrencias = 0;
 
-       if(strTexto[q] < 0 && strTexto[q + 1] < 0)
-    	   indice++;
-    }
+	qtdOcorrencias = k/2;
 
-    int qtdOcorrencias = 0;
-
-    qtdOcorrencias = e/2;
-
-    return qtdOcorrencias;
+	return qtdOcorrencias;
 
 }
 
@@ -435,11 +435,24 @@ int q4(char *strTexto, char *strBusca, int posicoes[30])
 int q5(int num)
 {
 
-    return num;
+	int inverso = 0;
+	int temp;
+
+	while(num > 0){
+
+		temp = num % 10;
+
+		inverso = inverso * 10 + temp;
+
+		num = num / 10;
+
+	}
+
+    return inverso;
 }
 
 /*
- Q5 = ocorrência de um número em outro
+ Q6 = ocorrência de um número em outro
  @objetivo
     Verificar quantidade de vezes da ocorrência de um número em outro
  @entrada
@@ -450,6 +463,32 @@ int q5(int num)
 
 int q6(int numerobase, int numerobusca)
 {
-    int qtdOcorrencias;
-    return qtdOcorrencias;
+
+	int temp;
+	int qtdOcorrencias = 0;
+	int tamanho = 1;
+
+	temp = numerobusca;
+
+	while (temp != 0){
+
+		tamanho *= 10;
+		temp /= 10;
+
+	}
+
+	temp = numerobase;
+
+	while (temp != 0){
+
+	   if (temp % tamanho == numerobusca){
+
+		qtdOcorrencias++;
+		temp /= tamanho;
+
+	}else
+		temp /= 10;
+	}
+	return qtdOcorrencias;
+
 }
