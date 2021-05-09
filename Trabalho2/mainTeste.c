@@ -38,9 +38,9 @@ void testeInserirSemNada()
 {
     show_log("testeInserirSemNada()");
     printf("%d\n", inserirNumeroEmEstrutura(2, 2) == SEM_ESTRUTURA_AUXILIAR);
-    printf("%d\n", inserirNumeroEmEstrutura(2, -2) == POSICAO_INVALIDA);
-    printf("%d\n", inserirNumeroEmEstrutura(2, 0) == POSICAO_INVALIDA);
-    printf("%d\n", inserirNumeroEmEstrutura(2, 11) == POSICAO_INVALIDA);
+    printf("%d\n", inserirNumeroEmEstrutura(-2, 2) == POSICAO_INVALIDA);
+    printf("%d\n", inserirNumeroEmEstrutura(0, 2) == POSICAO_INVALIDA);
+    printf("%d\n", inserirNumeroEmEstrutura(11, 2) == POSICAO_INVALIDA);
 }
 
 void testeCriarEstrutura()
@@ -260,4 +260,3 @@ void testeListaEncadeada()
 
     printf("%d\n", inicio == NULL);
 }
-

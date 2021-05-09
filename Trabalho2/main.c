@@ -1,4 +1,4 @@
-#include <stdio.h>
+/*#include <stdio.h>
 #include <stdlib.h>
 
 #include "VitorLima-20192160036-T2.h"
@@ -10,7 +10,7 @@ void dobrar(int *x);
 int menu()
 {
     int op;
-    printf("Digite as opção desejada\n");
+    printf("\nDigite a opção desejada\n");
     printf("0 - Sair\n");
     printf("1 - Inserir\n");
     printf("2 - Excluir\n");
@@ -44,15 +44,15 @@ int main()
             ret = inserirNumeroEmEstrutura(5, 25);
             if (ret == SUCESSO)
             {
-                printf("Inserido com sucesso");
+                printf("Inserido com sucesso.\n");
             }
             else if (ret == SEM_ESPACO)
             {
-                printf("Sem Espaço");
+                printf("Sem Espaço.\n");
             }
             else if (ret == SEM_ESTRUTURA_AUXILIAR)
             {
-                printf("Sem estrutura Auxiliar");
+                printf("Sem estrutura Auxiliar.\n");
             }
             break;
         }
@@ -66,7 +66,7 @@ int main()
         case 3:
         { //recuperar dados estrutura auxiliar
             int posicao, retorno;
-            printf("Qual a estrutura a ser listada (1..10)?");
+            printf("Qual a estrutura a ser listada (1..10)?\n");
             scanf("%d", &posicao);
 
             int qtd = getQuantidadeElementosEstruturaAuxiliar(posicao);
@@ -111,11 +111,11 @@ int main()
 
         default:
         {
-            printf("opcao inválida\n");
+            printf("Opcao inválida\n");
         }
         }
     }
 
     return 0;
-}
+}*/
 

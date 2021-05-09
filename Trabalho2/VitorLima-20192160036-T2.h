@@ -1,36 +1,27 @@
-#define SUCESSO -1
-#define SEM_ESPACO -2
-#define SEM_ESTRUTURA_AUXILIAR -3
-#define JA_TEM_ESTRUTURA_AUXILIAR -4
-#define POSICAO_INVALIDA -5
-#define SEM_ESPACO_DE_MEMORIA -6
-#define TAMANHO_INVALIDO -7
-#define ESTRUTURA_AUXILIAR_VAZIA -8
-#define NUMERO_INEXISTENTE -9
-#define NOVO_TAMANHO_INVALIDO -10
-#define TODAS_ESTRUTURAS_AUXILIARES_VAZIAS -11
-#define TAM 10
+#ifndef TRABALHO2_ESTRUTURAVETORES_H
+#define TRABALHO2_ESTRUTURAVETORES_H
 
-typedef struct{
+// enumeracoes (enum) ajudam a deixar o codigo mais legivel, possibilitando que voce de significado
+// as suas constantes, para mais informacoes https://en.cppreference.com/w/c/language/enum
+// as constantes do enum em sua inicialização vao representar o numero resultante da soma do valor da
+// constante anterior mais 1, caso nao haja valor algum na primeira constante ela vai ser inicializada com 0
+enum { TODAS_ESTRUTURAS_AUXILIARES_VAZIAS = -11, NOVO_TAMANHO_INVALIDO, NUMERO_INEXISTENTE,
+       ESTRUTURA_AUXILIAR_VAZIA, TAMANHO_INVALIDO, SEM_ESPACO_DE_MEMORIA, POSICAO_INVALIDA,
+       JA_TEM_ESTRUTURA_AUXILIAR, SEM_ESTRUTURA_AUXILIAR, SEM_ESPACO, SUCESSO };
 
-	int *aux;
-	int qtdelementos;
-	int ttaux;
+// Estrutura Principal
+typedef struct principal{
+	int *auxiliar; // VAI APONTAR PARA A ESTRUTURA AUXILIAR
+	int tamanho; // TAMANHO DA ESTRUTURA AUXILIAR
+	int qtd; // ELE VAI CONTAR A QUANTIDADE DE ELEMENTOS no VETOR
+}Principal;
 
-}bloco;
-
-bloco pvet[TAM];
-
-typedef struct reg
-{
-  int conteudo;
-  struct reg *prox;
+typedef struct reg {
+    int conteudo;
+    struct reg *prox;
 } No;
 
-No *inicio;
-
-
-void ordenar(int posicao, int vetorAux[]);
+int ehPosicaoValida(int posicao);
 int criarEstruturaAuxiliar(int posicao, int tamanho);
 int inserirNumeroEmEstrutura(int posicao, int valor);
 int excluirNumeroDoFinaldaEstrutura(int posicao);
@@ -48,4 +39,6 @@ void destruirListaEncadeadaComCabecote(No **inicio);
 void inicializar();
 void finalizar();
 void dobrar(int *x);
+
+#endif  // TRABALHO2_ESTRUTURAVETORES_H
 
