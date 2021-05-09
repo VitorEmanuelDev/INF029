@@ -9,13 +9,17 @@
 #define NUMERO_INEXISTENTE -9
 #define NOVO_TAMANHO_INVALIDO -10
 #define TODAS_ESTRUTURAS_AUXILIARES_VAZIAS -11
+#define TAM 10
 
-// Estrutura principal
-typedef struct principal{
-	int *auxiliar; // aponta para estrutura auxiliar
-	int tamanho; // tamanho da estrutura auxiliar
-	int qtd; // conta quantidade de elementos no array
-}Principal;
+typedef struct{
+
+	int *aux;
+	int qtdelementos;
+	int ttaux;
+
+}bloco;
+
+bloco pvet[TAM];
 
 typedef struct reg
 {
@@ -23,6 +27,10 @@ typedef struct reg
   struct reg *prox;
 } No;
 
+No *inicio;
+
+
+void ordenar(int posicao, int vetorAux[]);
 int criarEstruturaAuxiliar(int posicao, int tamanho);
 int inserirNumeroEmEstrutura(int posicao, int valor);
 int excluirNumeroDoFinaldaEstrutura(int posicao);

@@ -14,7 +14,7 @@ void testeRetornarTodosNumeros();
 void testeMudarTamanhoEstrutura();
 void testeListaEncadeada();
 
-int mainTeste() // @suppress("No return")
+int main()
 {
     inicializar();
     testeInserirSemNada();
