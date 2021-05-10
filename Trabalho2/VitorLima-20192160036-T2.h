@@ -11,9 +11,9 @@ enum { TODAS_ESTRUTURAS_AUXILIARES_VAZIAS = -11, NOVO_TAMANHO_INVALIDO, NUMERO_I
 
 // Estrutura Principal
 typedef struct principal{
-	int *auxiliar; // VAI APONTAR PARA A ESTRUTURA AUXILIAR
-	int tamanho; // TAMANHO DA ESTRUTURA AUXILIAR
-	int qtd; // ELE VAI CONTAR A QUANTIDADE DE ELEMENTOS no VETOR
+	int *auxiliar;
+	int tamanho;
+	int qtd;
 }Principal;
 
 typedef struct reg {

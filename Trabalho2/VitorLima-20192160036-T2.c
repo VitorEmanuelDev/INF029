@@ -32,7 +32,7 @@ int criarEstruturaAuxiliar(int posicao, int tamanho)
 	  if (ehPosicaoValida(posicao))
 	    return POSICAO_INVALIDA;
 
-	  posicao -= 1; // o vetor vai de 0 - 9
+	  posicao -= 1;
 
 	  if (vetorPrincipal[posicao].auxiliar != NULL)
 	    return JA_TEM_ESTRUTURA_AUXILIAR;
@@ -75,7 +75,7 @@ int inserirNumeroEmEstrutura(int posicao, int valor)
       return SEM_ESPACO;
 
     vetorPrincipal[posicao].auxiliar[qtd] = valor;
-    vetorPrincipal[posicao].qtd ++; // ELE CONSEGUIU COLOCAR O VALOR NA ESTRUTURA
+    vetorPrincipal[posicao].qtd++;
 
     return SUCESSO;
 }
@@ -100,10 +100,10 @@ int excluirNumeroDoFinaldaEstrutura(int posicao)
 	    if (vetorPrincipal[posicao].auxiliar == NULL)
 	        return SEM_ESTRUTURA_AUXILIAR;
 
-	    if (vetorPrincipal[posicao].qtd == 0) // DEPOIS TENHO QUE VERIFICAR SE EXISTE OUTRA FORMA
+	    if (vetorPrincipal[posicao].qtd == 0)
 	        return ESTRUTURA_AUXILIAR_VAZIA;
 
-	    vetorPrincipal[posicao].qtd --; // EXCLUSÃO LÓGICA
+	    vetorPrincipal[posicao].qtd--;
 
 	  return SUCESSO;
 }
@@ -144,7 +144,7 @@ int excluirNumeroEspecificoDeEstrutura(int posicao, int valor)
 
 	    else
 	      for (i = 0; i < qtd-1; i++)
-	        // Se for encontrado, ele vai ser colocado no final do vetor
+
 	        if (vetorPrincipal[posicao].auxiliar[i] == valor){
 	          aux = vetorPrincipal[posicao].auxiliar[i];
 	          vetorPrincipal[posicao].auxiliar[i] = vetorPrincipal[posicao].auxiliar[i+1];
