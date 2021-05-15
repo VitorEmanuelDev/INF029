@@ -260,5 +260,3 @@ void testeListaEncadeada()
 
     printf("%d\n", inicio == NULL);
 }
-
-

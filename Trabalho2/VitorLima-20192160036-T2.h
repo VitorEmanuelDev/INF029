@@ -22,6 +22,7 @@ typedef struct reg {
 } No;
 
 int ehPosicaoValida(int posicao);
+int todasEstruturasAuxiliaresVazias();
 int criarEstruturaAuxiliar(int posicao, int tamanho);
 int inserirNumeroEmEstrutura(int posicao, int valor);
 int excluirNumeroDoFinaldaEstrutura(int posicao);
@@ -41,4 +42,3 @@ void finalizar();
 void dobrar(int *x);
 
 #endif  // TRABALHO2_ESTRUTURAVETORES_H
-
