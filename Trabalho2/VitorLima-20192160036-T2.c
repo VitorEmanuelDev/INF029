@@ -215,15 +215,20 @@ void bubbleSort(int vetorAux[], int n){
 
     int aux;
 
-    for (int i = n -1; i > 0; i--)
+    for (int i = 0; i < n; i++){
 
-        for (int j = 0; j < i; j++)
+        for (int j = i + 1; j < n; j++){
 
-            if(vetorAux[j] > vetorAux[j + 1]){
-                aux = vetorAux[j];
-                vetorAux[j] = vetorAux[j + 1];
-                vetorAux[j + 1] = aux;
+            if(vetorAux[i] > vetorAux[j]){
+
+                aux = vetorAux[i];
+                vetorAux[i] = vetorAux[j];
+                vetorAux[j] = aux;
+
             }
+        }
+    }
+
 }
 
 int getDadosOrdenadosEstruturaAuxiliar(int posicao, int vetorAux[])
