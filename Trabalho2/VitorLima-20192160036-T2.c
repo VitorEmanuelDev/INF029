@@ -473,11 +473,11 @@ RetorPrincipal void
 */
 void getDadosListaEncadeadaComCabecote(No* inicio, int vetorAux[]){
 
-    No *atual = inicio->prox;
+   No *atual = inicio->prox;
 
     int i = 0;
 
-    while (atual != NULL){
+    while (atual->prox != NULL){
 
         vetorAux[i] = atual->conteudo;
         atual = atual->prox;
@@ -531,5 +531,6 @@ void finalizar()
 
 	for(int i = 0; i < TAM; i++)
 	     free(vetorPrincipal[i].auxiliar);
+
 }
 
