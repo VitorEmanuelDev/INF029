@@ -122,7 +122,7 @@ Rertono (int)
 */
 int excluirNumeroEspecificoDeEstrutura(int posicao, int valor)
 {
-	   int existe = 0;
+	    int existe = 0;
 	    int aux;
 
 	    if (ehPosicaoValida(posicao))
@@ -263,14 +263,13 @@ int getDadosDeTodasEstruturasAuxiliares(int vetorAux[])
 	        return TODAS_ESTRUTURAS_AUXILIARES_VAZIAS;
 
 	    int qtd;
-	    int k = 0;
 
 	    for (int i = 0; i < TAM; i++){
 
 	        if (vetorPrincipal[i].auxiliar != NULL){
 	            qtd = vetorPrincipal[i].qtd;
 
-	            for (int j = 0; j < qtd; j++, k++)
+	            for (int j = 0, k = 0; j < qtd; j++, k++)
 	                 vetorAux[k] = vetorPrincipal[i].auxiliar[j];
 	        }
 	    }
