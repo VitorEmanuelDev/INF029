@@ -4,14 +4,21 @@
 
 int inverte(int numero);
 
+int inverso = 0;
+int digito;
+
 int main(void){
 
 	int numero;
+	int invertido;
 
 	printf("Informe um número que deseja inverter:\n");
 	scanf("%d", &numero);
 
-	inverte(numero);
+	invertido = inverte(numero);
+
+	printf("\n");
+	printf("%d", invertido);
 
 	return 0;
 
@@ -20,18 +27,19 @@ int main(void){
 
 int inverte(int numero){
 
-	int temp;
+	if(numero){
 
-	temp = numero % 10;
+		digito = numero % 10;//1 = 321 % 10
+		inverso = inverso * 10 + digito;
+		inverte(numero / 10);
 
-	printf("%d", temp);
+	}else{
 
-	numero = numero / 10;
+		return inverso;
 
-	if(numero > 0)
-		return inverte(numero);
-	return 0;
+	}
 
+	return inverso;
 
 }
 
