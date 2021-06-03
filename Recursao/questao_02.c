@@ -1,5 +1,5 @@
-//2. Faça uma função recursiva que calcule e retorne o N-ésimo termo da sequência
-//Fibonacci. Alguns números desta sequência são: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89...
+/*2. Faça uma função recursiva que calcule e retorne o N-ésimo termo da sequência
+Fibonacci. Alguns números desta sequência são: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89...*/
 
 #include<stdio.h>
 
@@ -20,9 +20,9 @@ int main(void){
 		printf("%d ", fibonacci(i + 1));
 
 	}
-        
-        printf("\n");	
+        	
 	getchar();
+	printf("\n");
 
 	return 0;
 
@@ -31,9 +31,9 @@ int main(void){
 
 int fibonacci(int numero){
 
-if (numero <= 1)
-	return numero;
-return fibonacci(numero - 1) + fibonacci(numero - 2);
+	if (numero <= 1)
+		return numero;
+	return fibonacci(numero - 1) + fibonacci(numero - 2);
 
 }
 
