@@ -18,7 +18,7 @@ int main(void){
 
 	srand((unsigned int)time(NULL));
 
-	float a = 5.0;
+	float a = 1.0;
 
 	for(int i = 0; i < TAM; i++){
 
@@ -63,4 +63,3 @@ int inverte(float reais[], int esq, int dir){
 	return 0;
 
 }
-
