@@ -14,7 +14,7 @@ int main(void){
 
     int n;
 
-    puts("Informe um número");
+    printf("Informe um número");
     scanf("%d", &n);
 
     printf("%d!! = %d", n, fatorial(n));
