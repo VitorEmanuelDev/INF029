@@ -1,5 +1,6 @@
 #ifndef TRABALHO2_ESTRUTURAVETORES_H
 #define TRABALHO2_ESTRUTURAVETORES_H
+#define TAM 10
 
 // enumeracoes (enum) ajudam a deixar o codigo mais legivel, possibilitando que voce de significado
 // as suas constantes, para mais informacoes https://en.cppreference.com/w/c/language/enum
@@ -11,18 +12,17 @@ enum { TODAS_ESTRUTURAS_AUXILIARES_VAZIAS = -11, NOVO_TAMANHO_INVALIDO, NUMERO_I
 
 // Estrutura Principal
 typedef struct principal{
-	int *auxiliar;
-	int tamanho;
-	int qtd;
+	int *auxiliar; // VAI APONTAR PARA A ESTRUTURA AUXILIAR
+	int tamanho; // TAMANHO DA ESTRUTURA AUXILIAR
+	int qtd; // ELE VAI CONTAR A QUANTIDADE DE ELEMENTOS no VETOR
 }Principal;
 
-typedef struct reg {
-    int conteudo;
-    struct reg *prox;
-} No;
+// Estrutura Auxiliar
+typedef struct no{
+	int conteudo;
+	struct no *prox;
+}No;
 
-int ehPosicaoValida(int posicao);
-int todasEstruturasAuxiliaresVazias();
 int criarEstruturaAuxiliar(int posicao, int tamanho);
 int inserirNumeroEmEstrutura(int posicao, int valor);
 int excluirNumeroDoFinaldaEstrutura(int posicao);
@@ -31,7 +31,7 @@ int getDadosEstruturaAuxiliar(int posicao, int vetorAux[]);
 int getDadosOrdenadosEstruturaAuxiliar(int posicao, int vetorAux[]);
 int getDadosDeTodasEstruturasAuxiliares(int vetorAux[]);
 int getDadosOrdenadosDeTodasEstruturasAuxiliares(int vetorAux[]);
-int modificarTamanhoEstruturaAuxiliar(int posicao, int novoTamanho);
+int modificarTamanhoEstruturaAuxiliar(int posicao, int novoTam);
 int getQuantidadeElementosEstruturaAuxiliar(int posicao);
 No *montarListaEncadeadaComCabecote();
 void getDadosListaEncadeadaComCabecote(No *inicio, int vetorAux[]);
@@ -39,6 +39,7 @@ void destruirListaEncadeadaComCabecote(No **inicio);
 
 void inicializar();
 void finalizar();
+void Pontilhado();
 void dobrar(int *x);
 
 #endif  // TRABALHO2_ESTRUTURAVETORES_H

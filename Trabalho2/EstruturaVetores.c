@@ -1,8 +1,9 @@
+
 #include <stdio.h>
 #include <stdlib.h>
-#define TAM 10
 
-#include "VitorLima-20192160036-T2.h"
+
+#include "EstruturaVetores.h"
 
 Principal vetorPrincipal[TAM];
 
@@ -538,4 +539,3 @@ void finalizar()
 	     free(vetorPrincipal[i].auxiliar);
 
 }
-
