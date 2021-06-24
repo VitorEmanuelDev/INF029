@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define TAM 10
-#include "EstruturaVetores.h"
 
+#include "EstruturaVetores.h"
 
 void show_log(char *str);
 
@@ -18,7 +17,6 @@ void testeListaEncadeada();
 
 int main()
 {
-
     inicializar();
     testeInserirSemNada();
     testeCriarEstrutura();
@@ -107,7 +105,6 @@ void testeExcluirNumeroEspecifico()
 
 void testeListar()
 {
-
     show_log("testeListar()");
     //###  int getDadosEstruturaAuxiliar(int posicao, int vetorAux[]); ###
     printf("%d\n", inserirNumeroEmEstrutura(2, 7) == SUCESSO);
@@ -170,6 +167,7 @@ void testeRetornarTodosNumeros()
 5 [1,34,12,6,27,-6, , , , ]
 */
     int vet[9];
+
     printf("%d\n", getDadosDeTodasEstruturasAuxiliares(vet) == SUCESSO);
 
     printf("%d\n", vet[0] == 3);
@@ -226,7 +224,6 @@ Rertono (int)
 */
 void testeMudarTamanhoEstrutura()
 {
-
     show_log("testeMudarTamanhoEstrutura()");
     int vet[1];
     printf("%d\n", modificarTamanhoEstruturaAuxiliar(2, -3) == NOVO_TAMANHO_INVALIDO);
@@ -236,12 +233,10 @@ void testeMudarTamanhoEstrutura()
     printf("%d\n", modificarTamanhoEstruturaAuxiliar(1, 7) == SEM_ESTRUTURA_AUXILIAR);
 
     //modificar para tamanho de 3 para 1
-
-    printf("%d\n", modificarTamanhoEstruturaAuxiliar(2, 1) == SUCESSO);
+    printf("%d\n", modificarTamanhoEstruturaAuxiliar(2, -2) == SUCESSO);
     printf("%d\n", getQuantidadeElementosEstruturaAuxiliar(2) == 1);
     printf("%d\n", getDadosEstruturaAuxiliar(2, vet) == SUCESSO);
     printf("%d\n", vet[0] == 3);
-
 
     //modificar para tamanho de 1 para 4
     printf("%d\n", modificarTamanhoEstruturaAuxiliar(2, 3) == SUCESSO);
