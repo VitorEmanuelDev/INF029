@@ -33,7 +33,7 @@ int criarEstruturaAuxiliar(int posicao, int tamanho)
 	  if (ehPosicaoValida(posicao))
 	    return POSICAO_INVALIDA;
 
-	  posicao -= 1;
+	  posicao--;
 
 	  if (vetorPrincipal[posicao].auxiliar != NULL)
 	    return JA_TEM_ESTRUTURA_AUXILIAR;
@@ -65,7 +65,7 @@ int inserirNumeroEmEstrutura(int posicao, int valor)
     if (ehPosicaoValida(posicao))
         return POSICAO_INVALIDA;
 
-    posicao -= 1;
+    posicao--;
 
     if (vetorPrincipal[posicao].auxiliar == NULL )
         return SEM_ESTRUTURA_AUXILIAR;
@@ -96,7 +96,7 @@ int excluirNumeroDoFinaldaEstrutura(int posicao)
 	 if (ehPosicaoValida(posicao) == 1)
 	        return POSICAO_INVALIDA;
 
-	    posicao -= 1;
+	    posicao--;
 
 	    if (vetorPrincipal[posicao].auxiliar == NULL)
 	        return SEM_ESTRUTURA_AUXILIAR;
@@ -129,7 +129,7 @@ int excluirNumeroEspecificoDeEstrutura(int posicao, int valor)
 	    if (ehPosicaoValida(posicao))
 	        return POSICAO_INVALIDA;
 
-	    posicao -= 1;
+	    posicao--;
 
 	    if (vetorPrincipal[posicao].auxiliar == NULL)
 	        return SEM_ESTRUTURA_AUXILIAR;
@@ -189,7 +189,7 @@ int getDadosEstruturaAuxiliar(int posicao, int vetorAux[]){
     if (ehPosicaoValida(posicao))
         return POSICAO_INVALIDA;
 
-    posicao -= 1;
+    posicao--;
 
     if (vetorPrincipal[posicao].auxiliar == NULL)
         return SEM_ESTRUTURA_AUXILIAR;
@@ -237,7 +237,7 @@ int getDadosOrdenadosEstruturaAuxiliar(int posicao, int vetorAux[])
 	 if (ehPosicaoValida(posicao))
 	        return POSICAO_INVALIDA;
 
-	    posicao -= 1;
+	    posicao--;
 
 	    if (vetorPrincipal[posicao].auxiliar == NULL)
 	        return SEM_ESTRUTURA_AUXILIAR;
@@ -346,7 +346,7 @@ int modificarTamanhoEstruturaAuxiliar(int posicao, int novoTamanho)
 	 if (ehPosicaoValida(posicao))
 	        return POSICAO_INVALIDA;
 
-	    posicao -= 1;
+	    posicao--;
 
 	    if (vetorPrincipal[posicao].auxiliar == NULL)
 	        return SEM_ESTRUTURA_AUXILIAR;
@@ -387,7 +387,7 @@ int getQuantidadeElementosEstruturaAuxiliar(int posicao)
 	 if (ehPosicaoValida(posicao))
 	        return POSICAO_INVALIDA;
 
-	    posicao -= 1;
+	    posicao--;
 
 	    if (vetorPrincipal[posicao].auxiliar == NULL)
 	        return SEM_ESTRUTURA_AUXILIAR;
@@ -519,9 +519,8 @@ void destruirListaEncadeadaComCabecote(No** inicio){
 Objetivo: inicializa o programa. deve ser chamado ao inicio do programa
 */
 void inicializar(){
-  int i;
 
-  for (i = 0; i < TAM; i++){
+  for (int i = 0; i < TAM; i++){
     vetorPrincipal[i].auxiliar = NULL;
     vetorPrincipal[i].qtd = 0;
     vetorPrincipal[i].tamanho = 0;
