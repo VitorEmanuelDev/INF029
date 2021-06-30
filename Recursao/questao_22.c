@@ -38,7 +38,7 @@ int tetranacci(int numero){
 	if (numero == 4)
 	        return 1;
 	else
-		return tetranacci(numero - 1) + tetranacci(numero - 2) + tetranacci(numero - 3) + + tetranacci(numero - 4);
+		return tetranacci(numero - 1) + tetranacci(numero - 2) + tetranacci(numero - 3) + tetranacci(numero - 4);
 
 }
 
