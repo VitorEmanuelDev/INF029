@@ -7,11 +7,6 @@
 
 Principal vetorPrincipal[TAM];
 
-void dobrar(int *x)
-{
-
-    *x = *x * 2;
-}
 
 /*
 Objetivo: criar estrutura auxiliar na posição 'posicao'.

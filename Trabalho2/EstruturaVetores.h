@@ -11,10 +11,10 @@ enum { TODAS_ESTRUTURAS_AUXILIARES_VAZIAS = -11, NOVO_TAMANHO_INVALIDO, NUMERO_I
        JA_TEM_ESTRUTURA_AUXILIAR, SEM_ESTRUTURA_AUXILIAR, SEM_ESPACO, SUCESSO };
 
 // Estrutura Principal
-typedef struct principal{
-	int *auxiliar; // VAI APONTAR PARA A ESTRUTURA AUXILIAR
-	int tamanho; // TAMANHO DA ESTRUTURA AUXILIAR
-	int qtd; // ELE VAI CONTAR A QUANTIDADE DE ELEMENTOS no VETOR
+typedef struct Principal{
+	int *auxiliar;
+	int tamanho;
+	int qtd;
 }Principal;
 
 // Estrutura Auxiliar
@@ -41,7 +41,6 @@ int todasEstruturasAuxiliaresVazias();
 
 void inicializar();
 void finalizar();
-void Pontilhado();
 void dobrar(int *x);
 
 #endif  // TRABALHO2_ESTRUTURAVETORES_H
